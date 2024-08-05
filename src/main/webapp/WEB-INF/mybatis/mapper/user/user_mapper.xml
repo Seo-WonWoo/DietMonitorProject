@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="user_mapper">
+
+	<select id="findLoginUser" parameterType="User" resultType="User">
+		SELECT * FROM member WHERE email=#{email} and pw=#{pw}
+	</select>
+
+	<select id="findUserList" resultType="User">
+		SELECT * FROM member
+	</select>
+	
+	<select id="findUserByEmail" resultType="User" parameterType="String">
+		SELECT * FROM member
+		WHERE email = #{email}
+	</select>
+	
+	<update id="modifyUser" parameterType="User">
+		UPDATE member
+		SET pw = #{pw},
+			name = #{name},
+		WHERE email = #{email}
+	</update>
+	
+	<insert id="saveUser" parameterType="User">
+		INSERT INTO member
+		VALUES ( member_id_seq.nextval, #{email}, #{pw}, #{name}, 'tel', sysdate, 1, 'address', sysdate )
+	</insert>
+	
+</mapper>					
+
+
+	

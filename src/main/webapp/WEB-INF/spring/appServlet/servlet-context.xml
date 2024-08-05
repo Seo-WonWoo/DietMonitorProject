@@ -43,7 +43,7 @@
 		<beans:property name="suffix" value=".jsp"></beans:property>
 	</beans:bean>
 
-	<resources location="file:///d:/fileStorage/" mapping="/fileStorage/**" />
+	<resources location="file:///c:/fileStorage/" mapping="/fileStorage/**" />
 	<resources location="/resources/" mapping="/**"></resources>
 
 	<beans:bean id="multipartResolver"
