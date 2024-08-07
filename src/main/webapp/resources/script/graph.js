@@ -1,15 +1,7 @@
 
 
-console.log('graph.js');
-document.addEventListener('DOMContentLoaded', function() {
-    // Chart.js가 로드된 후에 차트 생성
-	console.log('a');
-    barChart();
-    lineChart();
-	console.log('b');
-});
 
-function barChart() {
+function barChart(nutrientData) {
     var ctx = document.getElementById("barCanvas").getContext("2d");
 
     var data = {
@@ -17,14 +9,14 @@ function barChart() {
         datasets: [		
 			{
 		            label: "필수영양소",
-		            data: [65, 75, 85, 95, 200, 210, 220, 230, 350, 350, 370, 370, 400, 500],
+		            data: [nutrientData.kcal, 75, 85, 95, 200, 210, 220, 230, 350, 350, 370, 370, nutrientData.kcal, nutrientData.kcal],
 		            backgroundColor: "rgba(255,0,0,0.5)",
 		            borderColor: "rgba(255,0,0,0.8)",
 		            borderWidth: 1
 	        },
 			{
 					label: "섭취영양소",
-		            data: [55, 65, 75, 85, 100, 110, 120, 130, 320, 250, 270, 270, 300, 400],
+		            data: [nutrientData.kcal, 65, 75, 85, 100, 110, 120, 130, 320, 250, 270, 270, nutrientData.kcal, nutrientData.kcal],
 		            backgroundColor: "rgba(0,0,255,0.5)",
 		            borderColor: "rgba(0,0,255,0.8)",
 		            borderWidth: 1
@@ -68,7 +60,7 @@ function barChart() {
     });
 }
 
-function lineChart() {
+function lineChart(nutrientData) {
     var ctx = document.getElementById("lineCanvas").getContext("2d");
 
     var data = {
@@ -76,14 +68,14 @@ function lineChart() {
         datasets: [
             {
                 label: "필수영양소",
-                data: [65, 75, 85, 95, 200, 210, 220],
+                data: [65, 75, 85, 95, 200, 210, nutrientData.fat],
                 backgroundColor: "rgba(220,220,220,0.2)",
                 borderColor: "rgba(255,0,0,1)",
                 borderWidth: 1
             },
             {
                 label: "섭취영양소",
-                data: [55, 65, 75, 75, 100, 110, 120],
+                data: [55, 65, 75, 75, 100, 110, nutrientData.fat],
                 backgroundColor: "rgba(151,187,205,0.2)",
                 borderColor: "rgba(0,0,255,1)",
                 borderWidth: 1

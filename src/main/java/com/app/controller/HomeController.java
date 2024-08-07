@@ -26,9 +26,6 @@ public class HomeController {
 		return "index";
 	}
 	
-	@GetMapping("/myInfoModify")
-	public String myInfo() {
-		return"/myInfoModify";
-	}
+	
 	
 }

@@ -57,7 +57,6 @@
 				<button class="common_btn">회원정보수정</button>
 			</div>
 
-
 		</div>
 
 	</section>
@@ -65,6 +64,7 @@
 	<!-- ---------------------그래프-------------------------- -->
 	<h1>그래프</h1>
 	<div class="graph">
+	<div class="inner">
 	
 		<div class="graphBox" style="width: 600px; height: 400px;">
 			<canvas id="barCanvas"></canvas>
@@ -73,8 +73,32 @@
 		<div class="graphBox" style="width: 600px; height: 400px;">
 			<canvas id="lineCanvas"></canvas>
 		</div>
+		</div>
 
 	</div>
+	<!-- ---------------------DB그래프-------------------------- -->
+	
+	<p>${ nutrientInfo.kcal }</p>
+	<script>
+         //JSP에서 값을 JavaScript 변수로 전달
+    	var nutrientData = {
+            kcal: ${nutrientInfo.kcal},
+         	fat: ${nutrientInfo.fat}
+        };
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Chart.js가 로드된 후에 차트 생성
+        	console.log('a');	// 그래프 작동확인 후 지울것!
+            barChart(nutrientData);
+            lineChart(nutrientData);
+        	console.log('b');
+        });
+        
+    </script>
+    
+    먹은 양 : <input type="text" id="food"> <br/><br/>
+    
+    
 	
 	<jsp:include page="footer.jsp" />
 </body>
