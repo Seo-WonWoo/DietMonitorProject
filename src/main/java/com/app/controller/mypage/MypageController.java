@@ -30,17 +30,27 @@ public class MypageController {
 
 		System.out.println(t1);
 		List<TotalDiet> totalDietList = mypageService.findTotalDietByAvg(t1);
-		List<TotalDiet> totalDietListMonthSum = mypageService.findTotalDietByMonthSum(t1);
 		
 		System.out.println(totalDietList);
 		model.addAttribute("totalDietList", totalDietList);
-		model.addAttribute("totalDietListMonthSum", totalDietListMonthSum);
 		
 		return"/mypage/myInfo";
 	}
 	
 	@GetMapping("/myIntakeFood")
-	public String myIntakeFood() {
+	public String myIntakeFood(Model model) {
+		
+		TotalDietSearchCondition t2 = new TotalDietSearchCondition();
+		
+		t2.setAccountNo(1);
+		t2.setMemberNo(2);
+
+		System.out.println(t2);
+		List<TotalDiet> totalDietListMonthSum = mypageService.findTotalDietByMonthSum(t2);
+		
+		System.out.println(totalDietListMonthSum);
+		model.addAttribute("totalDietListMonthSum", totalDietListMonthSum);
+		
 		return "/mypage/myIntakeFood";
 	}
 	

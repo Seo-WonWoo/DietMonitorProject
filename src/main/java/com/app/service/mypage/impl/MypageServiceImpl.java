@@ -49,7 +49,7 @@ public class MypageServiceImpl implements MypageService {
 	public List<TotalDiet> findTotalDietByMonthSum(TotalDietSearchCondition totalDietSearchCondition) {
 		// TODO Auto-generated method stub
 		List<TotalDiet> totalDietListMonthSum = mypageDAO.findTotalDietByMonthSum(totalDietSearchCondition);
-		return null;
+		return totalDietListMonthSum;
 	}
 	
 	

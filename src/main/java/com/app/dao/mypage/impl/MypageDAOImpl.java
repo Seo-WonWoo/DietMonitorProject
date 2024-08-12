@@ -55,7 +55,7 @@ public class MypageDAOImpl implements MypageDAO {
 	public List<TotalDiet> findTotalDietByMonthSum(TotalDietSearchCondition totalDietSearchCondition) {
 		// TODO Auto-generated method stub
 		List<TotalDiet> totalDietListMonthSum = sqlSessionTemplate.selectList("mypage_mapper.findTotalDietByMonthSum", totalDietSearchCondition);
-		return null;
+		return totalDietListMonthSum;
 	}
 	
 	

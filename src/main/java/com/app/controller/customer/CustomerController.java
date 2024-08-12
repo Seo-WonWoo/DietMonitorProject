@@ -179,33 +179,33 @@ public class CustomerController {
 		return "redirect:/main";
 	}
 
-	@GetMapping("/myInfo")
-	public String myInfo(HttpSession session, Model model) {
-		if (SessionManager.isLoginedAccount(session)) {
-			// 세션에서 로그인된 사용자의 accountNo와 memberNo를 조회
-			int accountNo = (int)session.getAttribute("accountNo");
-			int memberNo = (int)session.getAttribute("memberNo");
-			// 사용자 정보를 조회
-			User user = userService.findUserByMemberInfo(accountNo, memberNo);
-			// 사용자의 나이 계산
-			int age = userService.getAgeByMemberInfo(accountNo, memberNo);
-			System.out.println(age);
-			int genderId = user.getGenderId();
-			
-			String genderName = userService.getGenderNameByGenderId(genderId);
-
-			// 모델에 사용자 정보와 나이 추가
-			model.addAttribute("user", user);
-			model.addAttribute("age", age);
-			model.addAttribute("genderName", genderName);
-			model.addAttribute("accountNo", accountNo);
-			model.addAttribute("memberNo", memberNo);
-
-			return "myInfo";
-		}
-
-		return "redirect:/login";
-	}
+//	@GetMapping("/myInfo")
+//	public String myInfo(HttpSession session, Model model) {
+//		if (SessionManager.isLoginedAccount(session)) {
+//			// 세션에서 로그인된 사용자의 accountNo와 memberNo를 조회
+//			int accountNo = (int)session.getAttribute("accountNo");
+//			int memberNo = (int)session.getAttribute("memberNo");
+//			// 사용자 정보를 조회
+//			User user = userService.findUserByMemberInfo(accountNo, memberNo);
+//			// 사용자의 나이 계산
+//			int age = userService.getAgeByMemberInfo(accountNo, memberNo);
+//			System.out.println(age);
+//			int genderId = user.getGenderId();
+//			
+//			String genderName = userService.getGenderNameByGenderId(genderId);
+//
+//			// 모델에 사용자 정보와 나이 추가
+//			model.addAttribute("user", user);
+//			model.addAttribute("age", age);
+//			model.addAttribute("genderName", genderName);
+//			model.addAttribute("accountNo", accountNo);
+//			model.addAttribute("memberNo", memberNo);
+//
+//			return "myInfo";
+//		}
+//
+//		return "redirect:/login";
+//	}
 	
 	@GetMapping("/myInfoModify")
 	public String myInfoModify() {
@@ -219,17 +219,17 @@ public class CustomerController {
 	    return "redirect:/myInfo";
 	}
 	
-	@GetMapping("/myIntakeFood")
-	public String myIntakeFood() {
-
-		return "myIntakeFood";
-	}
+//	@GetMapping("/myIntakeFood")
+//	public String myIntakeFood() {
+//
+//		return "myIntakeFood";
+//	}
 	
-	@PostMapping("/myIntakeFood")
-	public String myIntakeFoodAction() {
-		
-		return "myIntakeFood";
-	}
+//	@PostMapping("/myIntakeFood")
+//	public String myIntakeFoodAction() {
+//		
+//		return "myIntakeFood";
+//	}
 	
 	@GetMapping("/manageProfile")
 	public String manageProfile(){

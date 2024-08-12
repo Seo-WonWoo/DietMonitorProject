@@ -85,33 +85,8 @@
 	</select>
 	
 	<select id="findTotalDietByMonthSum" parameterType="TotalDietSearchCondition" resultType="TotalDiet">
-		select 
-        AVG(kcal) kcal,
-		AVG(water) water,
-		AVG(protein) protein,
-		AVG(fat) fat,
-		AVG(batch) batch,
-		AVG(carbohydrate) carbohydrate,
-		AVG(sugars) sugars,
-		AVG(dietary_fiber) dietary_fiber,
-		AVG(calcium) calcium,
-		AVG(iron_content) iron_content,
-		AVG(phosphorus) phosphorus,
-		AVG(potassium) potassium,
-		AVG(sodium) sodium,
-		AVG(vitamin_a) vitamin_a,
-		AVG(retinol) retinol,
-		AVG(beta_carotene) beta_carotene,
-		AVG(thiamine) thiamine,
-		AVG(riboflavin) riboflavin,
-		AVG(niacin) niacin,
-		AVG(vitamin_c) vitamin_c,
-		AVG(vitamin_d) vitamin_d,
-		AVG(cholesterol) cholesterol,
-		AVG(saturated_fat) saturated_fat,
-		AVG(trans_fat) trans_fat 
-        from
-        (SELECT 
+		SELECT 
+		TO_CHAR(save_date, 'YYYY-MM-DD') save_date,  
 		SUM(kcal) kcal,
 		SUM(water) water,
 		SUM(protein) protein,
@@ -145,7 +120,8 @@
 				AND member_no = #{memberNo}				
 			</if>		
 				AND save_date BETWEEN SYSDATE-30 and SYSDATE
-				GROUP BY save_date)							
+				GROUP BY save_date
+				ORDER BY save_date ASC						
 		</where>				
 	</select>
 	

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -12,8 +13,13 @@
     <link href="../css/base.css" rel="stylesheet">
     <link href="../css/common.css" rel="stylesheet">
     <link href="../css/board.css" rel="stylesheet">
+    <script
+	src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"
+	integrity="sha512-ZwR1/gSZM3ai6vCdI+LVF1zSq/5HznD3ZSTk7kajkaj4D292NLuduDCO1c/NT8Id+jE58KYLKT7hXnbtryGmMg=="
+	crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript" src="../script/header.js"></script>
     <script type="text/javascript" src="../script/common.js"></script>
+    <script type="text/javascript" src="./script/graph.js"></script>
 
     <title>foodIngredients</title>
 </head>
@@ -466,6 +472,83 @@
             
         </div>
     </section>
+    
+     <!-- ---------------------그래프-------------------------- -->
+	
+	<div class="graph">
+	<div class="inner">
+	
+
+		
+	<c:forEach var = "i" begin = "1" end = "23">
+		<div class="graphBox" style="width: 600px; height: 400px;">
+			<canvas class="lineCanvas"></canvas>
+		</div>
+	</c:forEach>	
+		
+		</div>
+	</div>
+	
+	<!-- ---------------------DB그래프-------------------------- -->
+	
+	<script type="text/javascript">
+         //JSP에서 값을 JavaScript 변수로 전달
+        
+         
+         
+		var totalDietMonthSum = [];
+        
+        <c:forEach var="item2" items="${totalDietListMonthSum}">
+        	       	
+        	var totalDietMonthSumItem =
+        	{		
+        			saveDate: '${item2.saveDate}',
+        			kcal: '${item2.kcal}',
+                    water: '${item2.water}',
+                    protein: '${item2.protein}',
+                    fat: '${item2.fat}',
+                    batch: '${item2.batch}',
+                    carbohydrate: '${item2.carbohydrate}',
+                    sugars: '${item2.sugars}',
+                    dietaryFiber: '${item2.dietaryFiber}',
+                    calcium: '${item2.calcium}',
+                    ironContent: '${item2.ironContent}',
+                    phosphorus: '${item2.phosphorus}',
+                    potassium: '${item2.potassium}',
+                    sodium: '${item2.sodium}',
+                    vitaminA: '${item2.vitaminA}',
+                    retinol: '${item2.retinol}',
+                    betaCarotene: '${item2.betaCarotene}',
+                    thiamine: '${item2.thiamine}',
+                    riboflavin: '${item2.riboflavin}',
+                    niacin: '${item2.niacin}',
+                    vitaminC: '${item2.vitaminC}',
+                    vitaminD: '${item2.vitaminD}',
+                    cholesterol: '${item2.cholesterol}',
+                    saturatedFat: '${item2.saturatedFat}',
+                    transFat: '${item2.transFat}'
+        	};
+        	
+        	totalDietMonthSum.push(totalDietMonthSumItem);
+        	
+        </c:forEach>
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Chart.js가 로드된 후에 차트 생성
+            //barChart(totalDietDataItem); //평균 DAO 
+            lineChart(totalDietMonthSum); //한달
+        });
+        
+    </script>
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
     <div class="popup">
         <div class="box">

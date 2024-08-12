@@ -114,10 +114,6 @@
 		                                        <ul class="nutrient nutrient1 wrap">
 		    
 		                                            <li class="more_item wrap">
-		                                                <p class="title">중량</p>
-		                                                <p class="info">${item.foodIntake}</p>
-		                                            </li>
-		                                            <li class="more_item wrap">
 		                                                <p class="title">수분(g)</p>
 		                                                <p class="info">${item.water}</p>
 		                                            </li>
@@ -216,10 +212,6 @@
 		                                        <ul class="nutrient nutrient1 wrap">
 		    
 		                                            <li class="more_item wrap">
-		                                                <p class="title">중량</p>
-		                                                <p class="info">${dailySumItem.foodIntake}</p>
-		                                            </li>
-		                                            <li class="more_item wrap">
 		                                                <p class="title">수분(g)</p>
 		                                                <p class="info">${dailySumItem.water}</p>
 		                                            </li>
@@ -300,7 +292,7 @@
     					
                     </tbody>
                 </table>
-                <button class="common_btn mb80" type="submit">기록 삭제</button>
+                
             	</div>
             	</c:forEach>
             </div>
