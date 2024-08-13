@@ -45,11 +45,15 @@
         </div>
     </section>
 
-	<form action="">
+	<div class="inner">
+	<form action="" method="post">
 	<div>
-		검색 날짜: <input type="date" id="start">&emsp;&emsp;~&emsp;&emsp;<input type="date" id="end">&emsp;&emsp;<button type="button">확인</button>
+		검색 날짜: <input type="date" id="start" name="startDate">&emsp;&emsp;~&emsp;&emsp;
+				 <input type="date" id="end" name="endDate">&emsp;&emsp;
+				 <button type="submit" class="tab_search_btn">확인</button>
 	</div><br/>
 	</form>
+	</div>
 	
     <section class="table_menu">
         <div class="inner">

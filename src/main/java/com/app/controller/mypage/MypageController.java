@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.app.dto.mypage.TotalDiet;
@@ -56,13 +57,14 @@ public class MypageController {
 	
 	@GetMapping("/mySaveHistory")
 	public String mySaveHistory(Model model) {
-		
-		TotalDietSearchCondition t1 = new TotalDietSearchCondition();
-		
+		return "/mypage/test";
+	}
+	
+	@PostMapping("/mySaveHistory")
+	public String mySaveHistory(Model model, TotalDietSearchCondition t1) {
+			
 		t1.setAccountNo(1);
 		t1.setMemberNo(2);
-		t1.setStartDate("20240805");
-		t1.setEndDate("20240809");
 		
 		System.out.println(t1);
 		List<TotalDiet> totalDietList = mypageService.findTotalDietBySaveHistory(t1);
@@ -76,10 +78,6 @@ public class MypageController {
 		return "/mypage/test";
 	}
 	
-	@GetMapping("/test")
-	public String test() {
-		return "mypage/test";
-	}
 	
 	
 	

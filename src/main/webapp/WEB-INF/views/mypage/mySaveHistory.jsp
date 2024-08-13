@@ -44,10 +44,11 @@
         </div>
 				
     </section>
-
-		<div>
-		검색 날짜: <input type="date" id="start">&emsp;&emsp;~&emsp;&emsp;<input type="date" id="end">&emsp;&emsp;<button type="button">확인</button>
-		</div><br/>
+	
+		<form action="">
+		검색 날짜: <input type="date" id="start">&emsp;&emsp;~&emsp;&emsp;<input type="date" id="end">&emsp;&emsp;<button type="submit">확인</button>
+		</form>
+		<br/>
 
 <c:forEach var="Avg" items="${totalDietListAvg}" varStatus="status">  
 
