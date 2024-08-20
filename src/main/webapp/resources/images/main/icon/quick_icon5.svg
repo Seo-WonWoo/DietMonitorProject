@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="57.004" height="55.165" viewBox="0 0 57.004 55.165">
+  <defs>
+    <linearGradient id="linear-gradient" y1="0.5" x2="1" y2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#6f90f6"/>
+      <stop offset="1" stop-color="#4ca9f4"/>
+    </linearGradient>
+  </defs>
+  <g id="quick_icon5" transform="translate(6811 9898)">
+    <rect id="화면_캡처_2024-07-22_214537" data-name="화면 캡처 2024-07-22 214537" width="57.005" height="55.165" transform="translate(-6811 -9898)" fill="none"/>
+    <g id="그룹_190" data-name="그룹 190" transform="translate(-6811.46 -9897.64)">
+      <g id="그룹_189" data-name="그룹 189">
+        <rect id="사각형_217" data-name="사각형 217" width="19.96" height="27.39" rx="2.83" transform="translate(26.47 16.58)" fill="url(#linear-gradient)"/>
+        <rect id="사각형_218" data-name="사각형 218" width="19.96" height="27.39" rx="2.83" transform="translate(26.47 16.58)" fill="none"/>
+      </g>
+      <rect id="사각형_219" data-name="사각형 219" width="14.87" height="4.3" transform="translate(28.54 22.06)" fill="#fff"/>
+      <line id="선_130" data-name="선 130" y2="5.42" transform="translate(31.8 28.45)" fill="#fff" stroke="#fdfdfe" stroke-miterlimit="10" stroke-width="1"/>
+      <line id="선_131" data-name="선 131" x2="5.35" transform="translate(29.12 31.16)" fill="#fff" stroke="#fdfdfe" stroke-miterlimit="10" stroke-width="1"/>
+      <line id="선_132" data-name="선 132" x2="3.77" y2="3.88" transform="translate(29.91 36.31)" fill="#fff" stroke="#fdfdfe" stroke-miterlimit="10" stroke-width="1"/>
+      <line id="선_133" data-name="선 133" y1="3.73" x2="3.85" transform="translate(29.87 36.39)" fill="#fff" stroke="#fdfdfe" stroke-miterlimit="10" stroke-width="1"/>
+      <line id="선_134" data-name="선 134" x2="5.36" transform="translate(38.05 31.16)" fill="#fff" stroke="#fdfdfe" stroke-miterlimit="10" stroke-width="1"/>
+      <line id="선_135" data-name="선 135" x2="5.36" transform="translate(38.05 37.78)" fill="#fff" stroke="#fdfdfe" stroke-miterlimit="10" stroke-width="1"/>
+      <line id="선_136" data-name="선 136" x2="5.36" transform="translate(38.05 39.74)" fill="#fff" stroke="#fdfdfe" stroke-miterlimit="10" stroke-width="1"/>
+      <path id="패스_130" data-name="패스 130" d="M11.46,9.64V32.76s0,1.57,2.01,1.89a2.2,2.2,0,0,0,2.15-1.76V21.74h1.37s-.26-5.15-1.59-8.17c0,0-1.47-3.31-3.93-3.92Z" fill="#fff"/>
+      <path id="패스_131" data-name="패스 131" d="M18.04,9.64v7.92s0,1.57,1.11,2.09V32.82a1.744,1.744,0,0,0,1.96,1.66,1.9,1.9,0,0,0,1.71-1.64l.08-13.17s1.17-.34,1.14-2.17l.13-7.86H22.93v4.2H21.76V9.64H20.39v4.2H19.22V9.64H18.05Z" fill="#fff"/>
+    </g>
+  </g>
+</svg>

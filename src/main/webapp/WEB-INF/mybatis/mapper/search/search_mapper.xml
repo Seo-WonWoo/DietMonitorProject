@@ -1,0 +1,763 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="search_mapper">
+
+	<select id="findDataSortList" resultType="SearchCategory">
+		SELECT data_sort_id, data_sort_name
+		FROM (SELECT data_sort_id, data_sort_name
+		      FROM food_list_processed
+		      UNION ALL
+		      SELECT data_sort_id, data_sort_name
+		      FROM food_list_cooked
+		      UNION ALL
+		      SELECT data_sort_id, data_sort_name
+		      FROM food_list_agriculture
+		      UNION ALL
+		      SELECT data_sort_id, data_sort_name
+		      FROM food_list_fisheries)
+		GROUP BY data_sort_id, data_sort_name
+		ORDER BY data_sort_id, data_sort_name	
+	</select>
+
+
+	<select id="findMainCategoryList" resultType="SearchCategory">
+		SELECT data_sort_id, data_sort_name,main_category_id, main_category_name
+		FROM (SELECT data_sort_id, data_sort_name,main_category_id, main_category_name
+		      FROM food_list_processed
+		      UNION ALL
+		      SELECT data_sort_id, data_sort_name,main_category_id, main_category_name
+		      FROM food_list_cooked
+		      UNION ALL
+		      SELECT data_sort_id, data_sort_name,main_category_id, main_category_name
+		      FROM food_list_agriculture
+		      UNION ALL
+		      SELECT data_sort_id, data_sort_name,main_category_id, main_category_name
+		      FROM food_list_fisheries)
+		GROUP BY data_sort_id, data_sort_name,main_category_id, main_category_name
+		ORDER BY data_sort_id, data_sort_name,main_category_id, main_category_name	
+	</select>
+	
+	<select id="findfoodTotalItems" resultType="int" parameterType="SearchInfo">
+		SELECT count(*)
+		FROM
+		(
+			SELECT
+			    food_code,
+			    food_name,
+			    data_sort_id,
+			    data_sort_name,
+			    food_sort_id,
+			    food_sort_name,
+			    main_category_id,
+			    main_category_name,
+			    rep_food_id,
+			    rep_food_name,
+			    mid_category_id,
+			    mid_category_name,
+			    sub_category_id,
+			    sub_category_name,
+			    min_category_id,
+			    min_category_name,
+			    nut_standard_amount,
+			    kcal,
+			    water,
+			    protein,
+			    fat,
+			    batch,
+			    carbohydrate,
+			    sugars,
+			    dietary_fiber,
+			    calcium,
+			    iron_content,
+			    phosphorus,
+			    potassium,
+			    sodium,
+			    vitamin_a,
+			    retinol,
+			    beta_carotene,
+			    thiamine,
+			    riboflavin,
+			    niacin,
+			    vitamin_c,
+			    vitamin_d,
+			    cholesterol,
+			    saturated_fat,
+			    trans_fat,
+			    source_code,
+			    source_name,
+			    ref_amount_once,
+			    food_weight,
+			    manufacturing_number,
+			    manufacturing_company,
+			    data_generation_method_code,
+			    data_generation_method_name,
+			    TO_CHAR(data_creation_date, 'YYYY-MM-DD') data_creation_date,
+				TO_CHAR(data_base_date, 'YYYY-MM-DD') data_base_date
+			FROM food_list_processed
+			UNION ALL
+			SELECT
+			    food_code,
+			    food_name,
+			    data_sort_id,
+			    data_sort_name,
+			    food_sort_id,
+			    food_sort_name,
+			    main_category_id,
+			    main_category_name,
+			    rep_food_id,
+			    rep_food_name,
+			    mid_category_id,
+			    mid_category_name,
+			    sub_category_id,
+			    sub_category_name,
+			    min_category_id,
+			    min_category_name,
+			    nut_standard_amount,
+			    kcal,
+			    water,
+			    protein,
+			    fat,
+			    batch,
+			    carbohydrate,
+			    sugars,
+			    dietary_fiber,
+			    calcium,
+			    iron_content,
+			    phosphorus,
+			    potassium,
+			    sodium,
+			    vitamin_a,
+			    retinol,
+			    beta_carotene,
+			    thiamine,
+			    riboflavin,
+			    niacin,
+			    vitamin_c,
+			    vitamin_d,
+			    cholesterol,
+			    saturated_fat,
+			    trans_fat,
+			    source_code,
+			    source_name,
+			    null,
+			    food_weight,
+			    null,
+			    manufacturing_company,
+			    data_generation_method_code,
+			    data_generation_method_name,
+			    TO_CHAR(data_creation_date, 'YYYY-MM-DD') data_creation_date,
+				TO_CHAR(data_base_date, 'YYYY-MM-DD') data_base_date
+			FROM food_list_cooked
+			UNION ALL
+			SELECT
+			    food_code,
+			    food_name,
+			    data_sort_id,
+			    data_sort_name,
+			    food_sort_id,
+			    food_sort_name,
+			    main_category_id,
+			    main_category_name,
+			    rep_food_id,
+			    rep_food_name,
+			    mid_category_id,
+			    mid_category_name,
+			    sub_category_id,
+			    sub_category_name,
+			    min_category_id,
+			    min_category_name,
+			    nut_standard_amount,
+			    kcal,
+			    water,
+			    protein,
+			    fat,
+			    batch,
+			    carbohydrate,
+			    sugars,
+			    dietary_fiber,
+			    calcium,
+			    iron_content,
+			    phosphorus,
+			    potassium,
+			    sodium,
+			    vitamin_a,
+			    retinol,
+			    beta_carotene,
+			    thiamine,
+			    riboflavin,
+			    niacin,
+			    vitamin_c,
+			    vitamin_d,
+			    cholesterol,
+			    saturated_fat,
+			    trans_fat,
+			    source_code,
+			    source_name,
+			    null,
+			    null,
+			    null,
+			    null,
+			    data_generation_method_code,
+			    data_generation_method_name,
+			    TO_CHAR(data_creation_date, 'YYYY-MM-DD') data_creation_date,
+				TO_CHAR(data_base_date, 'YYYY-MM-DD') data_base_date
+			FROM food_list_agriculture
+			UNION ALL
+			SELECT
+			    food_code,
+			    food_name,
+			    data_sort_id,
+			    data_sort_name,
+			    food_sort_id,
+			    food_sort_name,
+			    main_category_id,
+			    main_category_name,
+			    rep_food_id,
+			    rep_food_name,
+			    mid_category_id,
+			    mid_category_name,
+			    sub_category_id,
+			    sub_category_name,
+			    min_category_id,
+			    min_category_name,
+			    nut_standard_amount,
+			    kcal,
+			    water,
+			    protein,
+			    fat,
+			    batch,
+			    carbohydrate,
+			    sugars,
+			    dietary_fiber,
+			    calcium,
+			    iron_content,
+			    phosphorus,
+			    potassium,
+			    sodium,
+			    vitamin_a,
+			    retinol,
+			    beta_carotene,
+			    thiamine,
+			    riboflavin,
+			    niacin,
+			    vitamin_c,
+			    vitamin_d,
+			    cholesterol,
+			    saturated_fat,
+			    trans_fat,
+			    source_code,
+			    source_name,
+			    null,
+			    null,
+			    null,
+			    null,
+			    data_generation_method_code,
+			    data_generation_method_name,
+			    TO_CHAR(data_creation_date, 'YYYY-MM-DD') data_creation_date,
+				TO_CHAR(data_base_date, 'YYYY-MM-DD') data_base_date
+			FROM food_list_fisheries
+		)
+		<where>
+			<if test="searchKeyword != null and searchKeyword != '' ">
+				food_name LIKE '%' || #{searchKeyword} || '%'				
+			</if>
+			
+			<if test="dataSortId != null and dataSortId != '' ">
+				AND data_sort_id = #{dataSortId}
+			</if>
+			
+			<if test="mainCategoryName != null and mainCategoryName.size != 0 ">
+				AND main_category_name IN
+				<foreach item="item" index="index" collection="mainCategoryName"
+      				open="(" separator="," close=")">
+        			#{item}
+  				</foreach>				
+			</if>
+		</where>
+		
+			
+	</select>
+	
+	
+
+	<select id="findFoodList" resultType="Food" parameterType="SearchInfo">
+		SELECT * 
+		FROM(
+			SELECT 
+			ROWNUM num, total.*
+			FROM(
+			SELECT *
+			FROM
+			(SELECT
+			    food_code,
+			    food_name,
+			    data_sort_id,
+			    data_sort_name,
+			    food_sort_id,
+			    food_sort_name,
+			    main_category_id,
+			    main_category_name,
+			    rep_food_id,
+			    rep_food_name,
+			    mid_category_id,
+			    mid_category_name,
+			    sub_category_id,
+			    sub_category_name,
+			    min_category_id,
+			    min_category_name,
+			    nut_standard_amount,
+			    kcal,
+			    water,
+			    protein,
+			    fat,
+			    batch,
+			    carbohydrate,
+			    sugars,
+			    dietary_fiber,
+			    calcium,
+			    iron_content,
+			    phosphorus,
+			    potassium,
+			    sodium,
+			    vitamin_a,
+			    retinol,
+			    beta_carotene,
+			    thiamine,
+			    riboflavin,
+			    niacin,
+			    vitamin_c,
+			    vitamin_d,
+			    cholesterol,
+			    saturated_fat,
+			    trans_fat,
+			    source_code,
+			    source_name,
+			    ref_amount_once,
+			    food_weight,
+			    manufacturing_number,
+			    manufacturing_company,
+			    data_generation_method_code,
+			    data_generation_method_name,
+			    TO_CHAR(data_creation_date, 'YYYY-MM-DD') data_creation_date,
+				TO_CHAR(data_base_date, 'YYYY-MM-DD') data_base_date
+			FROM food_list_processed
+			UNION ALL
+			SELECT
+			    food_code,
+			    food_name,
+			    data_sort_id,
+			    data_sort_name,
+			    food_sort_id,
+			    food_sort_name,
+			    main_category_id,
+			    main_category_name,
+			    rep_food_id,
+			    rep_food_name,
+			    mid_category_id,
+			    mid_category_name,
+			    sub_category_id,
+			    sub_category_name,
+			    min_category_id,
+			    min_category_name,
+			    nut_standard_amount,
+			    kcal,
+			    water,
+			    protein,
+			    fat,
+			    batch,
+			    carbohydrate,
+			    sugars,
+			    dietary_fiber,
+			    calcium,
+			    iron_content,
+			    phosphorus,
+			    potassium,
+			    sodium,
+			    vitamin_a,
+			    retinol,
+			    beta_carotene,
+			    thiamine,
+			    riboflavin,
+			    niacin,
+			    vitamin_c,
+			    vitamin_d,
+			    cholesterol,
+			    saturated_fat,
+			    trans_fat,
+			    source_code,
+			    source_name,
+			    null,
+			    food_weight,
+			    null,
+			    manufacturing_company,
+			    data_generation_method_code,
+			    data_generation_method_name,
+			    TO_CHAR(data_creation_date, 'YYYY-MM-DD') data_creation_date,
+				TO_CHAR(data_base_date, 'YYYY-MM-DD') data_base_date
+			FROM food_list_cooked
+			UNION ALL
+			SELECT
+			    food_code,
+			    food_name,
+			    data_sort_id,
+			    data_sort_name,
+			    food_sort_id,
+			    food_sort_name,
+			    main_category_id,
+			    main_category_name,
+			    rep_food_id,
+			    rep_food_name,
+			    mid_category_id,
+			    mid_category_name,
+			    sub_category_id,
+			    sub_category_name,
+			    min_category_id,
+			    min_category_name,
+			    nut_standard_amount,
+			    kcal,
+			    water,
+			    protein,
+			    fat,
+			    batch,
+			    carbohydrate,
+			    sugars,
+			    dietary_fiber,
+			    calcium,
+			    iron_content,
+			    phosphorus,
+			    potassium,
+			    sodium,
+			    vitamin_a,
+			    retinol,
+			    beta_carotene,
+			    thiamine,
+			    riboflavin,
+			    niacin,
+			    vitamin_c,
+			    vitamin_d,
+			    cholesterol,
+			    saturated_fat,
+			    trans_fat,
+			    source_code,
+			    source_name,
+			    null,
+			    null,
+			    null,
+			    null,
+			    data_generation_method_code,
+			    data_generation_method_name,
+			    TO_CHAR(data_creation_date, 'YYYY-MM-DD') data_creation_date,
+				TO_CHAR(data_base_date, 'YYYY-MM-DD') data_base_date
+			FROM food_list_agriculture
+			UNION ALL
+			SELECT
+			    food_code,
+			    food_name,
+			    data_sort_id,
+			    data_sort_name,
+			    food_sort_id,
+			    food_sort_name,
+			    main_category_id,
+			    main_category_name,
+			    rep_food_id,
+			    rep_food_name,
+			    mid_category_id,
+			    mid_category_name,
+			    sub_category_id,
+			    sub_category_name,
+			    min_category_id,
+			    min_category_name,
+			    nut_standard_amount,
+			    kcal,
+			    water,
+			    protein,
+			    fat,
+			    batch,
+			    carbohydrate,
+			    sugars,
+			    dietary_fiber,
+			    calcium,
+			    iron_content,
+			    phosphorus,
+			    potassium,
+			    sodium,
+			    vitamin_a,
+			    retinol,
+			    beta_carotene,
+			    thiamine,
+			    riboflavin,
+			    niacin,
+			    vitamin_c,
+			    vitamin_d,
+			    cholesterol,
+			    saturated_fat,
+			    trans_fat,
+			    source_code,
+			    source_name,
+			    null,
+			    null,
+			    null,
+			    null,
+			    data_generation_method_code,
+			    data_generation_method_name,
+			    TO_CHAR(data_creation_date, 'YYYY-MM-DD') data_creation_date,
+				TO_CHAR(data_base_date, 'YYYY-MM-DD') data_base_date
+			FROM food_list_fisheries)
+			<where>
+				<if test="searchKeyword != null and searchKeyword != '' ">
+					food_name LIKE '%' || #{searchKeyword} || '%'				
+				</if>
+				
+				<if test="dataSortId != null and dataSortId != '' ">
+					AND data_sort_id = #{dataSortId}
+				</if>
+				
+				<if test="mainCategoryName != null and mainCategoryName.size != 0 ">
+					AND main_category_name IN
+					<foreach item="item" index="index" collection="mainCategoryName"
+	      				open="(" separator="," close=")">
+	        			#{item}
+	  				</foreach>				
+				</if>
+			</where>
+			ORDER BY food_code
+			
+			) total
+		)
+		<where>
+			num BETWEEN #{page.viewStartItem} AND #{page.viewEndItem}
+		</where>
+	</select>
+
+
+
+	<select id="findFoodByFoodCode" resultType="Food" parameterType="String">
+		SELECT *
+		FROM
+		(SELECT
+		    food_code,
+		    food_name,
+		    data_sort_id,
+		    data_sort_name,
+		    food_sort_id,
+		    food_sort_name,
+		    main_category_id,
+		    main_category_name,
+		    rep_food_id,
+		    rep_food_name,
+		    mid_category_id,
+		    mid_category_name,
+		    sub_category_id,
+		    sub_category_name,
+		    min_category_id,
+		    min_category_name,
+		    nut_standard_amount,
+		    kcal,
+		    water,
+		    protein,
+		    fat,
+		    batch,
+		    carbohydrate,
+		    sugars,
+		    dietary_fiber,
+		    calcium,
+		    iron_content,
+		    phosphorus,
+		    potassium,
+		    sodium,
+		    vitamin_a,
+		    retinol,
+		    beta_carotene,
+		    thiamine,
+		    riboflavin,
+		    niacin,
+		    vitamin_c,
+		    vitamin_d,
+		    cholesterol,
+		    saturated_fat,
+		    trans_fat,
+		    source_code,
+		    source_name,
+		    ref_amount_once,
+		    food_weight,
+		    manufacturing_number,
+		    manufacturing_company,
+		    data_generation_method_code,
+		    data_generation_method_name,
+		    TO_CHAR(data_creation_date, 'YYYY-MM-DD') data_creation_date,
+			TO_CHAR(data_base_date, 'YYYY-MM-DD') data_base_date
+		FROM food_list_processed
+		UNION ALL
+		SELECT
+		    food_code,
+		    food_name,
+		    data_sort_id,
+		    data_sort_name,
+		    food_sort_id,
+		    food_sort_name,
+		    main_category_id,
+		    main_category_name,
+		    rep_food_id,
+		    rep_food_name,
+		    mid_category_id,
+		    mid_category_name,
+		    sub_category_id,
+		    sub_category_name,
+		    min_category_id,
+		    min_category_name,
+		    nut_standard_amount,
+		    kcal,
+		    water,
+		    protein,
+		    fat,
+		    batch,
+		    carbohydrate,
+		    sugars,
+		    dietary_fiber,
+		    calcium,
+		    iron_content,
+		    phosphorus,
+		    potassium,
+		    sodium,
+		    vitamin_a,
+		    retinol,
+		    beta_carotene,
+		    thiamine,
+		    riboflavin,
+		    niacin,
+		    vitamin_c,
+		    vitamin_d,
+		    cholesterol,
+		    saturated_fat,
+		    trans_fat,
+		    source_code,
+		    source_name,
+		    null,
+		    food_weight,
+		    null,
+		    manufacturing_company,
+		    data_generation_method_code,
+		    data_generation_method_name,
+		    TO_CHAR(data_creation_date, 'YYYY-MM-DD') data_creation_date,
+			TO_CHAR(data_base_date, 'YYYY-MM-DD') data_base_date
+		FROM food_list_cooked
+		UNION ALL
+		SELECT
+		    food_code,
+		    food_name,
+		    data_sort_id,
+		    data_sort_name,
+		    food_sort_id,
+		    food_sort_name,
+		    main_category_id,
+		    main_category_name,
+		    rep_food_id,
+		    rep_food_name,
+		    mid_category_id,
+		    mid_category_name,
+		    sub_category_id,
+		    sub_category_name,
+		    min_category_id,
+		    min_category_name,
+		    nut_standard_amount,
+		    kcal,
+		    water,
+		    protein,
+		    fat,
+		    batch,
+		    carbohydrate,
+		    sugars,
+		    dietary_fiber,
+		    calcium,
+		    iron_content,
+		    phosphorus,
+		    potassium,
+		    sodium,
+		    vitamin_a,
+		    retinol,
+		    beta_carotene,
+		    thiamine,
+		    riboflavin,
+		    niacin,
+		    vitamin_c,
+		    vitamin_d,
+		    cholesterol,
+		    saturated_fat,
+		    trans_fat,
+		    source_code,
+		    source_name,
+		    null,
+		    null,
+		    null,
+		    null,
+		    data_generation_method_code,
+		    data_generation_method_name,
+		    TO_CHAR(data_creation_date, 'YYYY-MM-DD') data_creation_date,
+			TO_CHAR(data_base_date, 'YYYY-MM-DD') data_base_date
+		FROM food_list_agriculture
+		UNION ALL
+		SELECT
+		    food_code,
+		    food_name,
+		    data_sort_id,
+		    data_sort_name,
+		    food_sort_id,
+		    food_sort_name,
+		    main_category_id,
+		    main_category_name,
+		    rep_food_id,
+		    rep_food_name,
+		    mid_category_id,
+		    mid_category_name,
+		    sub_category_id,
+		    sub_category_name,
+		    min_category_id,
+		    min_category_name,
+		    nut_standard_amount,
+		    kcal,
+		    water,
+		    protein,
+		    fat,
+		    batch,
+		    carbohydrate,
+		    sugars,
+		    dietary_fiber,
+		    calcium,
+		    iron_content,
+		    phosphorus,
+		    potassium,
+		    sodium,
+		    vitamin_a,
+		    retinol,
+		    beta_carotene,
+		    thiamine,
+		    riboflavin,
+		    niacin,
+		    vitamin_c,
+		    vitamin_d,
+		    cholesterol,
+		    saturated_fat,
+		    trans_fat,
+		    source_code,
+		    source_name,
+		    null,
+		    null,
+		    null,
+		    null,
+		    data_generation_method_code,
+		    data_generation_method_name,
+		    TO_CHAR(data_creation_date, 'YYYY-MM-DD') data_creation_date,
+			TO_CHAR(data_base_date, 'YYYY-MM-DD') data_base_date
+		FROM food_list_fisheries)
+		WHERE food_code = #{foodCode}
+	</select>
+	
+	<select id="findNutrientList" resultType="Nutrient">
+		SELECT * FROM nutrient
+	</select>
+	
+</mapper>

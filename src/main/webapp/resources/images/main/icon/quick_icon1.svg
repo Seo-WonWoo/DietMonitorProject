@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="57.004" height="55.165" viewBox="0 0 57.004 55.165">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.837" y1="0.152" x2="0.238" y2="0.873" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#768aff"/>
+      <stop offset="0.49" stop-color="#5a9bd4"/>
+      <stop offset="1" stop-color="#44b0ff"/>
+    </linearGradient>
+  </defs>
+  <g id="quick_icon1" transform="translate(7139 9898)">
+    <rect id="화면_캡처_2024-07-22_214537" data-name="화면 캡처 2024-07-22 214537" width="57.005" height="55.165" transform="translate(-7139 -9898)" fill="none"/>
+    <g id="그룹_195" data-name="그룹 195" transform="translate(-8.311 -11.155)">
+      <g id="그룹_176" data-name="그룹 176" transform="translate(-7130.39 -9886.145)">
+        <path id="패스_119" data-name="패스 119" d="M46.66,14.3V37.42s0,1.57,2.01,1.89a2.2,2.2,0,0,0,2.15-1.76V26.4h1.37s-.26-5.15-1.59-8.17c0,0-1.47-3.31-3.93-3.92Z" fill="#fff"/>
+        <path id="패스_120" data-name="패스 120" d="M5.7,14.39v7.92s0,1.57,1.11,2.09V37.57a1.744,1.744,0,0,0,1.96,1.66,1.9,1.9,0,0,0,1.71-1.64l.08-13.17s1.17-.34,1.14-2.17l.13-7.86H10.59v4.2H9.42v-4.2H8.05v4.2H6.88v-4.2H5.71Z" fill="#fff"/>
+        <path id="패스_121" data-name="패스 121" d="M19.05,33.63a11.858,11.858,0,1,0,2.88-16.52A11.852,11.852,0,0,0,19.05,33.63Zm16.5-11.6a8.312,8.312,0,1,1-11.58-2.02A8.307,8.307,0,0,1,35.55,22.03Z" fill="url(#linear-gradient)"/>
+        <circle id="타원_25" data-name="타원 25" cx="8.32" cy="8.32" r="8.32" transform="translate(20.43 18.49)" fill="#fff"/>
+        <path id="패스_122" data-name="패스 122" d="M28.43,22.05v5.31l2.86,2.86" fill="none" stroke="#52a4dc" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      </g>
+    </g>
+  </g>
+</svg>

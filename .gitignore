@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/windows,java,eclipse,maven
-# Edit at https://www.toptal.com/developers/gitignore?templates=windows,java,eclipse,maven
+# Created by https://www.toptal.com/developers/gitignore/api/windows,eclipse,java,maven
+# Edit at https://www.toptal.com/developers/gitignore?templates=windows,eclipse,java,maven
 
 ### Eclipse ###
 .metadata
@@ -138,4 +138,8 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+<<<<<<< HEAD
 # End of https://www.toptal.com/developers/gitignore/api/windows,java,eclipse,maven
+=======
+# End of https://www.toptal.com/developers/gitignore/api/windows,eclipse,java,maven
+target/m2e-wtp/web-resources/META-INF/maven/DietMonitorProject/DietMonitorProject/pom.properties

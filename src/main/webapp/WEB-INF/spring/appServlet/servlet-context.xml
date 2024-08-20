@@ -43,7 +43,7 @@
 		<beans:property name="suffix" value=".jsp"></beans:property>
 	</beans:bean>
 
-	<resources location="file:///d:/fileStorage/" mapping="/fileStorage/**" />
+	<resources location="file:///c:/fileStorage/" mapping="/fileStorage/**" />
 	<resources location="/resources/" mapping="/**"></resources>
 
 	<beans:bean id="multipartResolver"
@@ -53,32 +53,28 @@
 	</beans:bean>
 
 
-<!-- 	<interceptors> -->
-<!-- 		<interceptor> -->
-<!-- 			<mapping path="/customer/**"/> -->
-<!-- 			<mapping path="/**" /> -->
-<!-- 			<exclude-mapping path="/login" /> -->
-<!-- 			<exclude-mapping path="/" /> -->
-<!-- 			<exclude-mapping path="/main" /> -->
-<!-- 			<exclude-mapping path="/customer/signup" /> -->
-<!-- 			<exclude-mapping path="/customer/isDuplicatedId" /> -->
-<!-- 			<exclude-mapping path="/resources/**" /> -->
-<!-- 			<exclude-mapping path="/css/**" /> -->
-<!-- 			<exclude-mapping path="/js/**" /> -->
-<!-- 			<exclude-mapping path="/image/**" /> -->
-<!-- 			<exclude-mapping path="/admin/**"/> --> 
+	<interceptors>
+		<interceptor>			
+			<mapping path="/**" />			
+			<exclude-mapping path="/" />
+			<exclude-mapping path="/main" />
+			<exclude-mapping path="/login" />
+			<exclude-mapping path="/signup" />			
+			<exclude-mapping path="/user/isDuplicatedEmail" />
+			<exclude-mapping path="/logout" />
+			<exclude-mapping path="/foodSearch" />
+			<exclude-mapping path="/foodSearchList" />
+			<exclude-mapping path="/foodDetail/**" />			
+			<exclude-mapping path="/resources/**" />
+			<exclude-mapping path="/css/**" />
+			<exclude-mapping path="/script/**" />
+			<exclude-mapping path="/images/**" />
 
-<!-- 			<beans:bean class="com.app.interceptor.LoginInterceptor"> -->
-<!-- 			</beans:bean> -->
-<!-- 		</interceptor> -->
+			<beans:bean class="com.app.interceptor.LoginInterceptor">
+			</beans:bean>
+		</interceptor>
 
-		<!-- <interceptor> -->
-		<!-- <mapping path="/admin/**"/> -->
-		<!-- <exclude-mapping path=""/> -->
-		<!-- <beans:bean></beans:bean> -->
-		<!-- </interceptor> -->
-
-<!-- 	</interceptors> -->
+	</interceptors>
 
 </beans:beans>
 

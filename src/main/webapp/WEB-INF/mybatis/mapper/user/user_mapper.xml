@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="user_mapper">
+
+	<select id="findLoginUser" parameterType="User" resultType="User">
+		SELECT account_no, member_no, email, pw, name, nickname, tel, TO_CHAR(birth, 'YYYYMMDD') birth, gender_id, created_at, icon_id 
+		FROM member WHERE email=#{email} and pw=#{pw}
+	</select>
+	
+	<select id="findUserByMemberInfo" parameterType="map" resultType="User">
+		SELECT account_no, member_no, email, pw, name, nickname, tel, TO_CHAR(birth, 'YYYYMMDD') birth, gender_id, created_at, icon_id, TO_CHAR(pregnant_date, 'YYYYMMDD') pregnant_date
+		FROM member
+		WHERE account_no = #{accountNo} and member_no = #{memberNo}
+	</select>
+	
+	<select id="findUserListByAccountNo" parameterType="int" resultType="User">
+		SELECT account_no, member_no, email, pw, name, nickname, tel, TO_CHAR(birth, 'YYYYMMDD') birth, gender_id, created_at, icon_id, TO_CHAR(pregnant_date, 'YYYYMMDD') pregnant_date 
+		FROM member
+		WHERE account_no = #{accountNo}
+		ORDER BY member_no
+	</select>
+
+	<select id="findUserList" resultType="User">
+		SELECT account_no, member_no, email, pw, name, nickname, tel, TO_CHAR(birth, 'YYYYMMDD') birth, gender_id, created_at, icon_id, TO_CHAR(pregnant_date, 'YYYYMMDD') pregnant_date 
+		FROM member
+	</select>
+	
+	<select id="findUserByEmail" resultType="User" parameterType="String">
+		SELECT account_no, member_no, email, pw, name, nickname, tel, TO_CHAR(birth, 'YYYYMMDD') birth, gender_id, created_at, icon_id, TO_CHAR(pregnant_date, 'YYYYMMDD') pregnant_date 
+		FROM member
+		WHERE email = #{email}
+	</select>
+	
+	<update id="modifyUser"  parameterType="User">
+		UPDATE member
+		SET
+		<if test="pw != null and pw != '' ">
+				pw = #{pw},
+		</if>
+		<if test="name != null and name != '' ">
+				name = #{name},
+		</if>
+		<if test="nickname != null and nickname != '' ">
+				nickname = #{nickname},
+		</if>
+		<if test="tel != null and tel != '' ">
+				tel = #{tel},
+		</if>
+		<if test="birth != null and birth != '' ">
+				birth = #{birth},
+		</if>
+		<if test="genderId != null and genderId != '' ">
+				gender_id = #{genderId},
+		</if>
+		
+		<if test="pregnantDate == '' ">
+				pregnant_date = null,
+		</if>
+		
+		<if test="pregnantDate != null and pregnantDate != '' ">
+				pregnant_date = #{pregnantDate},
+		</if>
+		
+		<if test="iconId != null and iconId != '' ">
+				icon_id = #{iconId}
+		</if>				
+		WHERE account_no = #{accountNo} and member_no = #{memberNo}
+	</update>
+	
+	<insert id="saveUser" parameterType="User">
+		INSERT INTO member
+		VALUES ( account_no_seq.nextval, 1, #{email}, #{pw}, #{name}, #{nickname}, #{tel}, #{birth}, #{genderId}, 1, SYSDATE, NULL )
+	</insert>
+	
+	<insert id="addProfile" parameterType="User">
+		INSERT INTO member
+		VALUES ( #{accountNo}, (SELECT NVL(MAX(member_no), 1) + 1 FROM member WHERE account_no = #{accountNo}), NULL, NULL, NULL, #{nickname}, NULL, #{birth}, #{genderId}, #{iconId},  NULL, NULL )
+	</insert>
+	
+	<select id="getMemberCountByAccountNo" resultType="int" parameterType="int">
+        SELECT count(*) 
+		FROM member
+		WHERE account_no = #{accountNo}
+    </select>
+	
+	<select id="getMonthsByMemberInfo" parameterType="map" resultType="int">
+        SELECT CEIL(MONTHS_BETWEEN(SYSDATE, birth) / 12)
+        FROM member
+        WHERE account_no = #{accountNo} and member_no = #{memberNo}
+    </select>
+    
+    <select id="getGenderNameByGenderId" parameterType="int" resultType="String">
+        SELECT gender_name
+		FROM gender
+		WHERE gender_id = #{genderId}
+    </select>
+    
+     <select id="getEmailCountByEmail" parameterType="String" resultType="int">
+        SELECT COUNT(*)
+		  FROM member
+		 WHERE email = #{email}
+    </select>
+    
+    <select id="getNutritionStandardByMemberInfo" parameterType="Map" resultType="NutritionStandard">
+		
+		SELECT 
+		    a.nutrient_id nutrient_id ,
+		    a.gender_id gender_id,
+		    a.age_min age_min,
+		    a.age_max age_max,
+		    a.intake_rec + b.intake_rec intake_rec,
+		    a.intake_max intake_max
+		FROM
+		(
+		    SELECT *
+		    FROM nutrition_standard
+		    WHERE
+		        (
+		            SELECT CEIL(MONTHS_BETWEEN(SYSDATE, birth)) 
+		            FROM member
+		            WHERE
+		                account_no = #{accountNo} AND member_no = #{memberNo}
+		        ) BETWEEN age_min AND age_max
+	         	AND gender_id = DECODE (
+		         							(
+                                                CASE 
+                                                    WHEN
+                                                        CEIL (MONTHS_BETWEEN( SYSDATE, (SELECT birth FROM member WHERE account_no = #{accountNo} AND member_no = #{memberNo}) ) ) &lt; 61
+                                                        THEN 
+                                                            (
+                                                                SELECT DISTINCT(gender_id) 
+                                                                FROM nutrition_standard 
+                                                                WHERE CEIL(MONTHS_BETWEEN( SYSDATE, (SELECT birth FROM member WHERE account_no = #{accountNo} AND member_no = #{memberNo}) ) ) BETWEEN age_min AND age_max
+                                                            )
+                                                    ELSE 
+                                                        (SELECT gender_id FROM member WHERE account_no = #{accountNo} AND member_no = #{memberNo})
+                                                END
+                                            ), 1, 1, 2, 2, 3, 3, 4
+	         						   )
+		) a, 
+	
+		(
+		    SELECT 
+		        nutrient_id,
+		        DECODE((SELECT gender_id FROM member WHERE account_no = #{accountNo} AND member_no = #{memberNo}), 5, intake_rec, 6, intake_rec, 0) intake_rec
+		    FROM nutrition_standard
+		    WHERE
+	        	(
+		            SELECT CEIL( MONTHS_BETWEEN( SYSDATE, NVL2( (SELECT pregnant_date FROM member WHERE account_no = #{accountNo} AND member_no = #{memberNo}),
+		            											(SELECT pregnant_date FROM member WHERE account_no = #{accountNo} AND member_no = #{memberNo}), add_months(sysdate,-120) ) ) )
+		            FROM member
+		            WHERE
+	                account_no = #{accountNo} AND member_no = #{memberNo}
+	            ) BETWEEN age_min AND age_max
+	            AND gender_id = dECODE((SELECT gender_id FROM member WHERE account_no = #{accountNo} AND member_no = #{memberNo}), 5, 5, 6, 6, 4)
+		) b
+		WHERE a.nutrient_id = b.nutrient_id
+		ORDER BY nutrient_id
+		
+    </select>
+    
+    <delete id="removeProfile" parameterType="map">
+    	DELETE FROM member
+    	WHERE account_no = #{accountNo} AND member_no = #{memberNo}
+    </delete>
+	
+	<select id="findMemberList" parameterType="User" resultType="User">
+		SELECT * FROM member WHERE account_no = #{accountNo} and member_no = #{memberNo}
+	</select>
+	
+</mapper>					
+
+
+	

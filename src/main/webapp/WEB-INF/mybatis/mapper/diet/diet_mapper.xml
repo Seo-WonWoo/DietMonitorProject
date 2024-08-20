@@ -1,0 +1,592 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<!DOCTYPE mapper PUBLIC 
+	"-//mybatis.org//DTD Mapper 3.0//EN" 
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="diet_mapper">
+
+	<select id="findTotalDiet" parameterType="User"
+		resultType="Diet">
+		SELECT * FROM diet
+		WHERE account_no = #{accountNo} 
+			AND member_no = #{memberNo}
+			AND state = 1
+			AND state = 2
+	</select>
+
+	<select id="findDailyDiet" parameterType="User"
+		resultType="Diet">
+		SELECT * FROM diet
+		WHERE account_no = #{accountNo} 
+			AND member_no = #{memberNo}
+			AND state = 1
+	</select>
+
+	<insert id="addFoodToDailyDiet" parameterType="Diet">
+		INSERT INTO diet
+		VALUES( log_no_seq.nextval, #{accountNo}, #{memberNo}, SYSDATE, #{foodCode},
+		#{foodIntake}, #{kcal}, #{water}, #{protein}, #{fat}, #{batch},
+		#{carbohydrate}
+		, #{sugars}, #{dietaryFiber}, #{calcium}, #{ironContent}, #{phosphorus}
+		, #{potassium}, #{sodium}, #{vitaminA}, #{retinol}, #{betaCarotene},
+		#{thiamine}
+		, #{riboflavin}, #{niacin}, #{vitaminC}, #{vitaminD}, #{cholesterol}
+		, #{saturatedFat}, #{transFat}, 1 )
+	</insert>
+
+
+	<select id="findDailyDietListByMemberInfo" parameterType="User"
+		resultType="Diet">
+		SELECT daily_diet.*, food.food_name, food.main_category_name
+		FROM (SELECT * FROM diet
+			WHERE account_no = #{accountNo} 
+			AND member_no = #{memberNo} 
+			AND state = 1) daily_diet,
+		(SELECT
+		food_code,
+		food_name,
+		data_sort_id,
+		data_sort_name,
+		food_sort_id,
+		food_sort_name,
+		main_category_id,
+		main_category_name,
+		rep_food_id,
+		rep_food_name,
+		mid_category_id,
+		mid_category_name,
+		sub_category_id,
+		sub_category_name,
+		min_category_id,
+		min_category_name,
+		nut_standard_amount,
+		kcal,
+		water,
+		protein,
+		fat,
+		batch,
+		carbohydrate,
+		sugars,
+		dietary_fiber,
+		calcium,
+		iron_content,
+		phosphorus,
+		potassium,
+		sodium,
+		vitamin_a,
+		retinol,
+		beta_carotene,
+		thiamine,
+		riboflavin,
+		niacin,
+		vitamin_c,
+		vitamin_d,
+		cholesterol,
+		saturated_fat,
+		trans_fat,
+		source_code,
+		source_name,
+		ref_amount_once,
+		food_weight,
+		manufacturing_number,
+		manufacturing_company,
+		data_generation_method_code,
+		data_generation_method_name,
+		data_creation_date,
+		data_base_date
+		FROM food_list_processed
+		UNION ALL
+		SELECT
+		food_code,
+		food_name,
+		data_sort_id,
+		data_sort_name,
+		food_sort_id,
+		food_sort_name,
+		main_category_id,
+		main_category_name,
+		rep_food_id,
+		rep_food_name,
+		mid_category_id,
+		mid_category_name,
+		sub_category_id,
+		sub_category_name,
+		min_category_id,
+		min_category_name,
+		nut_standard_amount,
+		kcal,
+		water,
+		protein,
+		fat,
+		batch,
+		carbohydrate,
+		sugars,
+		dietary_fiber,
+		calcium,
+		iron_content,
+		phosphorus,
+		potassium,
+		sodium,
+		vitamin_a,
+		retinol,
+		beta_carotene,
+		thiamine,
+		riboflavin,
+		niacin,
+		vitamin_c,
+		vitamin_d,
+		cholesterol,
+		saturated_fat,
+		trans_fat,
+		source_code,
+		source_name,
+		null,
+		food_weight,
+		null,
+		manufacturing_company,
+		data_generation_method_code,
+		data_generation_method_name,
+		data_creation_date,
+		data_base_date
+		FROM food_list_cooked
+		UNION ALL
+		SELECT
+		food_code,
+		food_name,
+		data_sort_id,
+		data_sort_name,
+		food_sort_id,
+		food_sort_name,
+		main_category_id,
+		main_category_name,
+		rep_food_id,
+		rep_food_name,
+		mid_category_id,
+		mid_category_name,
+		sub_category_id,
+		sub_category_name,
+		min_category_id,
+		min_category_name,
+		nut_standard_amount,
+		kcal,
+		water,
+		protein,
+		fat,
+		batch,
+		carbohydrate,
+		sugars,
+		dietary_fiber,
+		calcium,
+		iron_content,
+		phosphorus,
+		potassium,
+		sodium,
+		vitamin_a,
+		retinol,
+		beta_carotene,
+		thiamine,
+		riboflavin,
+		niacin,
+		vitamin_c,
+		vitamin_d,
+		cholesterol,
+		saturated_fat,
+		trans_fat,
+		source_code,
+		source_name,
+		null,
+		null,
+		null,
+		null,
+		data_generation_method_code,
+		data_generation_method_name,
+		data_creation_date,
+		data_base_date
+		FROM food_list_agriculture
+		UNION ALL
+		SELECT
+		food_code,
+		food_name,
+		data_sort_id,
+		data_sort_name,
+		food_sort_id,
+		food_sort_name,
+		main_category_id,
+		main_category_name,
+		rep_food_id,
+		rep_food_name,
+		mid_category_id,
+		mid_category_name,
+		sub_category_id,
+		sub_category_name,
+		min_category_id,
+		min_category_name,
+		nut_standard_amount,
+		kcal,
+		water,
+		protein,
+		fat,
+		batch,
+		carbohydrate,
+		sugars,
+		dietary_fiber,
+		calcium,
+		iron_content,
+		phosphorus,
+		potassium,
+		sodium,
+		vitamin_a,
+		retinol,
+		beta_carotene,
+		thiamine,
+		riboflavin,
+		niacin,
+		vitamin_c,
+		vitamin_d,
+		cholesterol,
+		saturated_fat,
+		trans_fat,
+		source_code,
+		source_name,
+		null,
+		null,
+		null,
+		null,
+		data_generation_method_code,
+		data_generation_method_name,
+		data_creation_date,
+		data_base_date
+		FROM food_list_fisheries) food
+		WHERE daily_diet.food_code = food.food_code
+		ORDER BY log_no
+	</select>
+
+	<select id="getTotalNutrientFromDailyDietByMemberInfo"
+		parameterType="User" resultType="Diet">
+		SELECT NVL(SUM(kcal), 0) kcal, NVL(SUM(water), 0)
+		water, NVL(SUM(protein), 0) protein, NVL(SUM(fat), 0) fat
+		, NVL(SUM(carbohydrate), 0) carbohydrate, NVL(SUM(sugars), 0) sugars
+		, NVL(SUM(dietary_fiber), 0) dietary_fiber, NVL(SUM(calcium), 0) calcium
+		, NVL(SUM(iron_content), 0) iron_content, NVL(SUM(phosphorus), 0) phosphorus
+		, NVL(SUM(potassium), 0) potassium, NVL(SUM(sodium), 0) sodium, NVL(SUM(vitamin_a), 0)
+		vitamin_a
+		, NVL(SUM(retinol), 0) retinol, NVL(SUM(beta_carotene), 0) beta_carotene
+		, NVL(SUM(thiamine), 0) thiamine, NVL(SUM(riboflavin), 0) riboflavin
+		, NVL(SUM(niacin), 0) niacin, NVL(SUM(vitamin_c), 0) vitamin_c, NVL(SUM(vitamin_d), 0)
+		vitamin_d
+		, NVL(SUM(cholesterol), 0) cholesterol, NVL(SUM(saturated_fat), 0) saturated_fat
+		, NVL(SUM(trans_fat), 0) trans_fat
+		FROM diet
+		WHERE account_no =#{accountNo} 
+		AND member_no = #{memberNo}
+		AND state = 1
+		ORDER BY log_no
+	</select>
+	
+	<select id="getRecommendedIntakeByMemberInfo" parameterType="User" resultType="double">
+		SELECT intake_rec
+		FROM nutrition_standard
+		WHERE (SELECT CEIL(MONTHS_BETWEEN(SYSDATE, birth)) 
+				        FROM member
+				        WHERE account_no = #{accountNo} AND member_no = #{memberNo}) 
+		BETWEEN age_min AND age_max
+		AND gender_id = (SELECT gender_id FROM member WHERE account_no = #{accountNo} AND member_no = #{memberNo})
+		ORDER BY nutrient_id
+	</select>
+	
+	<delete id="deleteSelectedDailyDiet" parameterType="int">
+		DELETE FROM diet
+		WHERE log_no = #{logNo} 
+		AND state = 1
+	</delete>
+	
+	<delete id="deleteAllDailyDiet" parameterType="User">
+		DELETE FROM diet
+		WHERE state = 1
+		AND account_no = #{accountNo}
+		AND member_no = #{memberNo}
+	</delete>
+	
+	<delete id="deleteSelectedExpectedDiet" parameterType="int">
+		DELETE FROM diet
+		WHERE log_no = #{logNo}
+		AND state = 3
+	</delete>
+	
+	<delete id="deleteAllExpectedDiet" parameterType="User">
+		DELETE FROM diet
+		WHERE state = 3
+		AND account_no = #{accountNo}
+		AND member_no = #{memberNo}
+	</delete>
+	
+	<update id="saveDailyDietToTotalDiet">
+		UPDATE diet
+		SET state = 2
+		WHERE state = 1
+	</update>
+	
+	<insert id="addFoodToExpectedDiet" parameterType="Diet">
+		INSERT INTO diet
+		VALUES( log_no_seq.nextval, #{accountNo}, #{memberNo}, SYSDATE, #{foodCode},
+		#{foodIntake}, #{kcal}, #{water}, #{protein}, #{fat}, #{batch},
+		#{carbohydrate}
+		, #{sugars}, #{dietaryFiber}, #{calcium}, #{ironContent}, #{phosphorus}
+		, #{potassium}, #{sodium}, #{vitaminA}, #{retinol}, #{betaCarotene},
+		#{thiamine}
+		, #{riboflavin}, #{niacin}, #{vitaminC}, #{vitaminD}, #{cholesterol}
+		, #{saturatedFat}, #{transFat}, 3 )
+	</insert>
+	
+	<select id="findExpectedDietListByMemberInfo" parameterType="User"
+		resultType="Diet">
+		SELECT expected_diet.*, food.food_name, food.main_category_name
+		FROM (SELECT * FROM diet
+			WHERE account_no = #{accountNo} 
+			AND member_no = #{memberNo} 
+			AND state = 1
+			OR state = 3) expected_diet,
+		(SELECT
+		food_code,
+		food_name,
+		data_sort_id,
+		data_sort_name,
+		food_sort_id,
+		food_sort_name,
+		main_category_id,
+		main_category_name,
+		rep_food_id,
+		rep_food_name,
+		mid_category_id,
+		mid_category_name,
+		sub_category_id,
+		sub_category_name,
+		min_category_id,
+		min_category_name,
+		nut_standard_amount,
+		kcal,
+		water,
+		protein,
+		fat,
+		batch,
+		carbohydrate,
+		sugars,
+		dietary_fiber,
+		calcium,
+		iron_content,
+		phosphorus,
+		potassium,
+		sodium,
+		vitamin_a,
+		retinol,
+		beta_carotene,
+		thiamine,
+		riboflavin,
+		niacin,
+		vitamin_c,
+		vitamin_d,
+		cholesterol,
+		saturated_fat,
+		trans_fat,
+		source_code,
+		source_name,
+		ref_amount_once,
+		food_weight,
+		manufacturing_number,
+		manufacturing_company,
+		data_generation_method_code,
+		data_generation_method_name,
+		data_creation_date,
+		data_base_date
+		FROM food_list_processed
+		UNION ALL
+		SELECT
+		food_code,
+		food_name,
+		data_sort_id,
+		data_sort_name,
+		food_sort_id,
+		food_sort_name,
+		main_category_id,
+		main_category_name,
+		rep_food_id,
+		rep_food_name,
+		mid_category_id,
+		mid_category_name,
+		sub_category_id,
+		sub_category_name,
+		min_category_id,
+		min_category_name,
+		nut_standard_amount,
+		kcal,
+		water,
+		protein,
+		fat,
+		batch,
+		carbohydrate,
+		sugars,
+		dietary_fiber,
+		calcium,
+		iron_content,
+		phosphorus,
+		potassium,
+		sodium,
+		vitamin_a,
+		retinol,
+		beta_carotene,
+		thiamine,
+		riboflavin,
+		niacin,
+		vitamin_c,
+		vitamin_d,
+		cholesterol,
+		saturated_fat,
+		trans_fat,
+		source_code,
+		source_name,
+		null,
+		food_weight,
+		null,
+		manufacturing_company,
+		data_generation_method_code,
+		data_generation_method_name,
+		data_creation_date,
+		data_base_date
+		FROM food_list_cooked
+		UNION ALL
+		SELECT
+		food_code,
+		food_name,
+		data_sort_id,
+		data_sort_name,
+		food_sort_id,
+		food_sort_name,
+		main_category_id,
+		main_category_name,
+		rep_food_id,
+		rep_food_name,
+		mid_category_id,
+		mid_category_name,
+		sub_category_id,
+		sub_category_name,
+		min_category_id,
+		min_category_name,
+		nut_standard_amount,
+		kcal,
+		water,
+		protein,
+		fat,
+		batch,
+		carbohydrate,
+		sugars,
+		dietary_fiber,
+		calcium,
+		iron_content,
+		phosphorus,
+		potassium,
+		sodium,
+		vitamin_a,
+		retinol,
+		beta_carotene,
+		thiamine,
+		riboflavin,
+		niacin,
+		vitamin_c,
+		vitamin_d,
+		cholesterol,
+		saturated_fat,
+		trans_fat,
+		source_code,
+		source_name,
+		null,
+		null,
+		null,
+		null,
+		data_generation_method_code,
+		data_generation_method_name,
+		data_creation_date,
+		data_base_date
+		FROM food_list_agriculture
+		UNION ALL
+		SELECT
+		food_code,
+		food_name,
+		data_sort_id,
+		data_sort_name,
+		food_sort_id,
+		food_sort_name,
+		main_category_id,
+		main_category_name,
+		rep_food_id,
+		rep_food_name,
+		mid_category_id,
+		mid_category_name,
+		sub_category_id,
+		sub_category_name,
+		min_category_id,
+		min_category_name,
+		nut_standard_amount,
+		kcal,
+		water,
+		protein,
+		fat,
+		batch,
+		carbohydrate,
+		sugars,
+		dietary_fiber,
+		calcium,
+		iron_content,
+		phosphorus,
+		potassium,
+		sodium,
+		vitamin_a,
+		retinol,
+		beta_carotene,
+		thiamine,
+		riboflavin,
+		niacin,
+		vitamin_c,
+		vitamin_d,
+		cholesterol,
+		saturated_fat,
+		trans_fat,
+		source_code,
+		source_name,
+		null,
+		null,
+		null,
+		null,
+		data_generation_method_code,
+		data_generation_method_name,
+		data_creation_date,
+		data_base_date
+		FROM food_list_fisheries) food
+		WHERE expected_diet.food_code = food.food_code
+		ORDER BY log_no
+	</select>
+	
+	<select id="getExpectedTotalNutrientFromDailyDietByMemberInfo"
+		parameterType="User" resultType="Diet">
+		SELECT NVL(SUM(kcal), 0) kcal, NVL(SUM(water), 0)
+		water, NVL(SUM(protein), 0) protein, NVL(SUM(fat), 0) fat
+		, NVL(SUM(carbohydrate), 0) carbohydrate, NVL(SUM(sugars), 0) sugars
+		, NVL(SUM(dietary_fiber), 0) dietary_fiber, NVL(SUM(calcium), 0) calcium
+		, NVL(SUM(iron_content), 0) iron_content, NVL(SUM(phosphorus), 0) phosphorus
+		, NVL(SUM(potassium), 0) potassium, NVL(SUM(sodium), 0) sodium, NVL(SUM(vitamin_a), 0)
+		vitamin_a
+		, NVL(SUM(retinol), 0) retinol, NVL(SUM(beta_carotene), 0) beta_carotene
+		, NVL(SUM(thiamine), 0) thiamine, NVL(SUM(riboflavin), 0) riboflavin
+		, NVL(SUM(niacin), 0) niacin, NVL(SUM(vitamin_c), 0) vitamin_c, NVL(SUM(vitamin_d), 0)
+		vitamin_d
+		, NVL(SUM(cholesterol), 0) cholesterol, NVL(SUM(saturated_fat), 0) saturated_fat
+		, NVL(SUM(trans_fat), 0) trans_fat
+		FROM diet
+		WHERE account_no =#{accountNo} 
+		AND member_no = #{memberNo}
+		AND state = 1
+		OR state = 3
+		ORDER BY log_no
+	</select>
+
+</mapper>

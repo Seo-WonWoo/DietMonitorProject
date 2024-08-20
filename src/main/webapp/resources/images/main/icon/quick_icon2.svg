@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="57.004" height="55.165" viewBox="0 0 57.004 55.165">
+  <defs>
+    <linearGradient id="linear-gradient" y1="0.5" x2="1" y2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#768aff"/>
+      <stop offset="1" stop-color="#46affc"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" y1="0.499" x2="1" y2="0.499" gradientUnits="objectBoundingBox">
+      <stop offset="0.54" stop-color="#4ea9e0"/>
+      <stop offset="1" stop-color="#6889c6"/>
+    </linearGradient>
+  </defs>
+  <g id="quick_icon2" transform="translate(7048 9898)">
+    <rect id="화면_캡처_2024-07-22_214537" data-name="화면 캡처 2024-07-22 214537" width="57.005" height="55.165" transform="translate(-7048 -9898)" fill="none"/>
+    <g id="그룹_180" data-name="그룹 180" transform="translate(-7048.27 -9897.01)">
+      <g id="그룹_178" data-name="그룹 178">
+        <rect id="사각형_197" data-name="사각형 197" width="31.36" height="31.36" rx="2.83" transform="translate(13.27 12.25)" fill="url(#linear-gradient)"/>
+        <rect id="사각형_198" data-name="사각형 198" width="31.36" height="31.36" rx="2.83" transform="translate(13.27 12.25)" fill="none"/>
+      </g>
+      <rect id="사각형_199" data-name="사각형 199" width="27.07" height="20.72" rx="1.94" transform="translate(15.4 20.65)" fill="#fff"/>
+      <rect id="사각형_200" data-name="사각형 200" width="2.28" height="4.47" rx="0.26" transform="translate(19.94 10.01)" fill="#fff"/>
+      <rect id="사각형_201" data-name="사각형 201" width="2.28" height="4.47" rx="0.26" transform="translate(36.43 10.01)" fill="#fff"/>
+      <g id="그룹_179" data-name="그룹 179">
+        <path id="패스_123" data-name="패스 123" d="M28.03,30.36a14.345,14.345,0,0,0-5.39-1.77,39.469,39.469,0,0,0,5.95,7.84s5.59-6.6,7.84-10.82a9.254,9.254,0,0,0-8.39,4.75Z" fill="url(#linear-gradient-2)"/>
+      </g>
+    </g>
+  </g>
+</svg>

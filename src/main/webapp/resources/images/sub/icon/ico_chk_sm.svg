@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="29.886" height="14.427" viewBox="0 0 29.886 14.427">
+  <g id="ico_chk_sm" transform="translate(6212.027 5030.935)">
+    <g id="사각형_167" data-name="사각형 167" transform="translate(-6212.027 -5030.935)" fill="#fff" stroke="#c9c9c9" stroke-width="1">
+      <rect width="14.427" height="14.427" rx="2" stroke="none"/>
+      <rect x="0.5" y="0.5" width="13.427" height="13.427" rx="1.5" fill="none"/>
+    </g>
+    <rect id="사각형_168" data-name="사각형 168" width="14.427" height="14.427" rx="2" transform="translate(-6196.568 -5030.935)" fill="#1565a2"/>
+    <path id="Icon_akar-check" data-name="Icon akar-check" d="M6,12.077l3.077,3.077L14.206,9" transform="translate(-6199.457 -5035.798)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+  </g>
+</svg>

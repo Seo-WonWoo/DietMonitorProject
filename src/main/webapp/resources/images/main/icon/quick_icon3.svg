@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="57.004" height="55.165" viewBox="0 0 57.004 55.165">
+  <defs>
+    <linearGradient id="linear-gradient" x1="1" y1="0.5" x2="0" y2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#708ef6"/>
+      <stop offset="1" stop-color="#49abf4"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" y1="0.5" x2="1" y2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#4ca9f4"/>
+      <stop offset="1" stop-color="#6b93f6"/>
+    </linearGradient>
+  </defs>
+  <g id="quick_icon3" transform="translate(6961 9898)">
+    <rect id="화면_캡처_2024-07-22_214537" data-name="화면 캡처 2024-07-22 214537" width="57.005" height="55.165" transform="translate(-6961 -9898)" fill="none"/>
+    <g id="그룹_184" data-name="그룹 184" transform="translate(-6961.84 -9897.02)">
+      <g id="그룹_182" data-name="그룹 182">
+        <rect id="사각형_203" data-name="사각형 203" width="19.96" height="27.39" rx="2.83" transform="translate(23.09 15.2)" fill="url(#linear-gradient)"/>
+        <rect id="사각형_204" data-name="사각형 204" width="19.96" height="27.39" rx="2.83" transform="translate(23.09 15.2)" fill="none"/>
+      </g>
+      <rect id="사각형_205" data-name="사각형 205" width="2.73" height="2.41" transform="translate(25.83 21.12)" fill="#fff"/>
+      <rect id="사각형_206" data-name="사각형 206" width="9.97" height="0.85" transform="translate(30.34 21.91)" fill="#fff"/>
+      <rect id="사각형_207" data-name="사각형 207" width="2.73" height="2.41" transform="translate(25.83 25.49)" fill="#fff"/>
+      <rect id="사각형_208" data-name="사각형 208" width="9.97" height="0.85" transform="translate(30.34 26.28)" fill="#fff"/>
+      <rect id="사각형_209" data-name="사각형 209" width="2.73" height="2.41" transform="translate(25.83 30.32)" fill="#fff"/>
+      <rect id="사각형_210" data-name="사각형 210" width="9.97" height="0.85" transform="translate(30.34 31.1)" fill="#fff"/>
+      <rect id="사각형_211" data-name="사각형 211" width="2.73" height="2.41" transform="translate(25.83 34.67)" fill="#fff"/>
+      <rect id="사각형_212" data-name="사각형 212" width="9.97" height="0.85" transform="translate(30.34 35.45)" fill="#fff"/>
+      <rect id="사각형_213" data-name="사각형 213" width="4.57" height="16.3" rx="0.14" transform="translate(14.84 19.4)" fill="#fff"/>
+      <rect id="사각형_214" data-name="사각형 214" width="4.57" height="1.26" rx="0.14" transform="translate(14.84 17.45)" fill="#fff"/>
+      <path id="패스_124" data-name="패스 124" d="M17.12,36.4h1.8l-.9,1.97-.9,1.98-.9-1.98-.9-1.97Z" fill="#fff"/>
+      <g id="그룹_183" data-name="그룹 183">
+        <path id="패스_125" data-name="패스 125" d="M30.55,12.96h4.23a1.5,1.5,0,0,1,1.5,1.5v2.36H29.11V14.4a1.447,1.447,0,0,1,1.44-1.44Z" fill="#fff"/>
+        <circle id="타원_26" data-name="타원 26" cx="1.94" cy="1.94" r="1.94" transform="translate(30.76 11.02)" fill="#fff"/>
+        <circle id="타원_27" data-name="타원 27" cx="0.91" cy="0.91" r="0.91" transform="translate(31.79 12.05)" fill="url(#linear-gradient-2)"/>
+      </g>
+    </g>
+  </g>
+</svg>
