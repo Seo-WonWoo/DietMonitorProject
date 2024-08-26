@@ -1,5 +1,5 @@
 $(document).ready(function () {
-
+	//헤더 슬라이더 메뉴 (반복)
     function generateMenuItems() {
         const items = [
             {
@@ -25,6 +25,7 @@ $(document).ready(function () {
             }
         ];
 
+		
         const ulWrap = $('<ul>').addClass('dap3 wrap');
 
         items.forEach(item => {
@@ -50,6 +51,7 @@ $(document).ready(function () {
 
     generateMenuItems();
     
+    //헤더 프로필 숨김/보임
      $("#header .profile_inner").hide();
      
     $('#header .profile_inner').on('click', function(event) {
@@ -63,8 +65,7 @@ $(document).ready(function () {
     }); 
 
 
-    //header_menu_slider
-
+   //헤더 슬라이더 시 메인, 서브 각각 스타일 변경
     let subToggle = true;
     let subHeader = $("#header .header_inner.header_sub");
     let topNav = $("#header .top_nav");
@@ -110,8 +111,6 @@ $(document).ready(function () {
             navLnb.eq(i).find('ul.dap2').css('display', 'block');
         }, function(){
             console.log('da2 out');
-            //topNav.removeClass('active');
-            //nav.css('background', 'none');
             navLnb.find('ul.dap2').css('display', 'none');
             navLnb.children('a').css('color', '');
         });
@@ -126,15 +125,7 @@ $(document).ready(function () {
         });
 
 
-    // 탭메뉴
-    $(".tab-menu ul li a").on('click', function() {
-        let index = $(".tab-menu ul li a").index(this);
-        
-        //모든 div의 on 클래스 제거
-        $('.tab-contents div').removeClass('on');
-        //클릭된 index에 해당하는 div에 on 추가
-        $('.tab-contents div:eq('+ index +')').addClass('on');
-    });
+    
 
 
 
@@ -151,6 +142,7 @@ $(document).ready(function () {
         $('#header .fa-times').removeClass('active');
         $('#header .fa-bars').removeClass('active');
         $('#header .top_nav').hide();
+        $('.profile_inner').hide();
     });
 
     //모바일 메뉴 아코디언

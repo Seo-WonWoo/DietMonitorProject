@@ -62,7 +62,7 @@
 
 	<section class="table_menu">
 		<div class="inner">
-			<c:forEach var="dailySumItem" items="${totalDietListSum}" varStatus="status">
+			<c:forEach var="dailySumItem" items="${DailyTotalNutrientBySearchCondition}" varStatus="status">
 				<div class="today_inner wrap">
 					<div class="wrap">
 						<img src="../images/sub/icon/material-today.svg" alt="">
@@ -101,7 +101,7 @@
 
 						<tbody>
 							<c:set var="number" value="1" />
-							<c:forEach var="item" items="${totalDietList}"
+							<c:forEach var="item" items="${TotalDietBySearchCondition}"
 								varStatus="status">
 								<c:if test="${dailySumItem.saveDate == item.saveDate}">
 									<tr onclick="">

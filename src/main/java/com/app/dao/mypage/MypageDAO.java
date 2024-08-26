@@ -8,16 +8,14 @@ import com.app.dto.search.Food;
 
 public interface MypageDAO {
 	
+	public Diet findAvgWeeklyNutrientByMemberInfo(TotalDietSearchCondition totalDietSearchCondition);
+	
 	public List<Diet> findTotalDietBySearchCondition(TotalDietSearchCondition totalDietSearchCondition);
 	
-	public Diet findTotalDietByAvg(TotalDietSearchCondition totalDietSearchCondition);
+	public List<Diet> getDailyTotalNutrientBySearchCondition(TotalDietSearchCondition totalDietSearchCondition);
 	
-	public List<Diet> findTotalDietBySaveHistory(TotalDietSearchCondition totalDietSearchCondition);
+	public List<Diet> getDailyTotalNutrientForPast30DaysByMemberInfo(TotalDietSearchCondition totalDietSearchCondition);
 	
-	public List<Diet> findTotalDietBySaveHistorySum(TotalDietSearchCondition totalDietSearchCondition);
-	
-	public List<Diet> findTotalDietByMonthSum(TotalDietSearchCondition totalDietSearchCondition);
-	
-	public List<Diet> findTotalDietByStandard(TotalDietSearchCondition totalDietSearchCondition);
+	public List<Diet> getNutrientStandardByMemberInfo(TotalDietSearchCondition totalDietSearchCondition);
 
 }

@@ -185,26 +185,27 @@
     
 		$(document).ready(function(){
 			
-			let emailDupChk;
+			let emailDupChk; //이메일 중복확인 변수 선언
 			
 			
-			$('#inputEmail').change(function(){
+			$('#inputEmail').change(function(){ //이메일 입력값 변동시
 				emailDupChk = false;
 			});
 			
-			$('.common_btn').click(function(){
-				if(emailDupChk == true){
+			$('.common_btn').click(function(){ //회원가입 버튼 클릭시
+				if(emailDupChk == true){ //이메일 중복확인 통과 경우
 					$('#commentForm').submit();
-				} else {
+				
+				} else { //이메일 중복확인 실패 경우
 					alert("중복 확인 해주세요");
-					event.preventDefault();
+					event.preventDefault(); //submit 기본동작 방지
 					$('#inputEmail').focus();					
 				}
 			});
 			
-			$('.check_btn').click(function(){
+			$('.check_btn').click(function(){ //이메일 중복확인 버튼 클릭시
 				
-				let inputEmail = $('#inputEmail').val();
+				let inputEmail = $('#inputEmail').val(); //이메일 입력값 변수 저장
 				
 				let requestJsonData = {
 					'email':inputEmail,
@@ -212,7 +213,7 @@
 				
 				let requestJsonDataString = JSON.stringify(requestJsonData);
 				
-				$.ajax({
+				$.ajax({ //비동기 통신
 					type: "POST",
 					url: "http://localhost:8080/user/isDuplicatedEmail",
 					headers:{
@@ -220,8 +221,9 @@
 					},
 					dataType: 'json',
 					data:requestJsonDataString,
-					success: function(result){
+					success: function(result){ //비동기 통신 성공시
 					
+						//이메일 중복확인 결과코드 따라 확인메세지 표기 및 이메일 중복확인 변수값 설정
 						if(result.header.resultCode == '200'){
 							$('#dupMsg').text('사용 가능한 이메일입니다.');
 							emailDupChk = true;

@@ -247,50 +247,49 @@
 	<script type="text/javascript">
 		$(document).ready( function(){
 			
-			<c:if test="${user.genderId == 3}">
-				$('input[type="radio"][id="male"]').prop('checked',true);				
+			<c:if test="${user.genderId == 3}"> //회원 반환정보 남성 경우
+				$('input[type="radio"][id="male"]').prop('checked',true); //남성 라디오 입력값 체크			
 			</c:if>
 			
-			<c:if test="${user.genderId >= 4}">
-				$('input[type="radio"][id="female"]').prop('checked',true);
+			<c:if test="${user.genderId >= 4}"> //회원 반환정보 여성 경우
+				$('input[type="radio"][id="female"]').prop('checked',true); //여성 라디오 입력값 체크
 			</c:if>
 			
-			<c:if test="${user.genderId == 5}">
+			<c:if test="${user.genderId == 5}"> //회원 반환정보 임산부 경우
 				$('input:radio[name="genderId"]').val(5);
-				$('input[type="checkbox"][id="pregnant"]').prop('checked',true);
-				$('#pregnantDate').css('display', 'block');
-				let pregnantDate = '${user.pregnantDate}';
-				console.log(pregnantDate);
+				$('input[type="checkbox"][id="pregnant"]').prop('checked',true); //임산부 체크박스 입력값 체크
+				$('#pregnantDate').css('display', 'block'); //임신시작일 화면 표기
+				let pregnantDate = '${user.pregnantDate}'; //임신시작일 반환값 저장 및 입력
 				$('input[type="text"][name="pregnantDate"]').val(pregnantDate);
 			</c:if>
 			
-			<c:if test="${user.genderId == 6}">
-				$('input[type="checkbox"][id="lactation"]').prop('checked',true);
-			</c:if>			
+			<c:if test="${user.genderId == 6}"> //회원 반환정보 수유부 경우
+				$('input[type="checkbox"][id="lactation"]').prop('checked',true); //수유부 체크박스 입력값 체크
+			</c:if>
 			
-			$('input[type="radio"][id="female"]').click( function(){
+			$('input[type="radio"][id="female"]').click( function(){ //여성 라디오 입력값 클릭시
 				$('input:radio[name="genderId"]').val(4);
-				$('input[type="checkbox"][class="otherCondition"]').prop('checked',false);
-				$('#pregnantDate').css('display', 'none');
-				$('input[type="text"][name="pregnantDate"]').val("");
+				$('input[type="checkbox"][class="otherCondition"]').prop('checked',false); //임신,수유 체크박스 입력값 초기화
+				$('#pregnantDate').css('display', 'none'); //임신시작일 화면 감추기
+				$('input[type="text"][name="pregnantDate"]').val(""); //임신시작일 초기화
 			});
 			
 			$('input[type="radio"][id="male"]').click( function(){
 				$('input:radio[name="genderId"]').val(3);
-				$('input[type="checkbox"][class="otherCondition"]').prop('checked',false);
-				$('#pregnantDate').css('display', 'none');
-				$('input[type="text"][name="pregnantDate"]').val("");
+				$('input[type="checkbox"][class="otherCondition"]').prop('checked',false); //임신,수유 체크박스 입력값 초기화
+				$('#pregnantDate').css('display', 'none'); //임신시작일 화면 감추기
+				$('input[type="text"][name="pregnantDate"]').val(""); //임신시작일 초기화
 			});
 			
-			$('input[type="checkbox"][class="otherCondition"]').change( function(){
+			$('input[type="checkbox"][class="otherCondition"]').change( function(){ //임신, 수유 입력값 변동시
 				
-				if( $(this).prop('checked') ){
+				if( $(this).prop('checked') ){ //임신, 수유 입력값 동시 체크 방지
 					$('input[type="checkbox"][class="otherCondition"]').prop('checked',false);
 					$(this).prop('checked',true);
 					$('input[type="radio"][id="female"]').prop('checked',true);
 				}
 				
-				if( $('input[type="checkbox"][id="pregnant"]').prop("checked") ){
+				if( $('input[type="checkbox"][id="pregnant"]').prop("checked") ){ //임신 입력값 체크 경우
 					$('input:radio[name="genderId"]').val(5);
 					$('#pregnantDate').css('display', 'block');
 				} else {
@@ -298,11 +297,9 @@
 					$('input[type="text"][name="pregnantDate"]').val("");
 				}
 				
-				if( $('input[type="checkbox"][id="lactation"]').prop("checked") ){
+				if( $('input[type="checkbox"][id="lactation"]').prop("checked") ){ //수유 입력값 체크 경우
 					$('input:radio[name="genderId"]').val(6);
 				}
-				
-				
 				
 			});
 		});

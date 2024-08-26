@@ -162,78 +162,74 @@
 	   	
 	    	nutrientShow();
 	    	
-	    	$('input[name=foodIntake]').keypress(function(e){
+	    	$('input[name=foodIntake]').keypress(function(e){ //섭취량 입력창 엔터키 입력시 submit 실행 방지
 				if(e.keyCode && e.keyCode == 13){
 					event.preventDefault();
 				}
 			});
 	    	
-	    	$('input[name=foodIntake]').change(function(){
+	    	$('input[name=foodIntake]').change(function(){ //섭취량 입력값 변동시 
 	    		nutrientShow();
 	    	});
 	    	
-	    	$('input[name=foodIntake]').keyup(function(){
+	    	$('input[name=foodIntake]').keyup(function(){ //섭취량 입력값 키보드 입력할 시
 	    		nutrientShow();
 	    	});
 	    	
-	    	$('#submit1').click(function(){    		
-	    		$('#frm_diet').attr("action", "/addExpectedDiet");
-				$('#frm_diet').submit();
+	    	$('#submit1').click(function(){ //예상식단 버튼 클릭시   		
+	    		$('#frm_diet').attr("action", "/addExpectedDiet"); //form 경로 변경 : 예상식단
+				$('#frm_diet').submit(); //form 제출
 			});
 	    	
-	    	$('#submit2').click(function(){    		
-	    		$('#frm_diet').attr("action", "/addDailyDiet");
-				$('#frm_diet').submit();
+	    	$('#submit2').click(function(){ //금일식단 버튼 클릭시   		
+	    		$('#frm_diet').attr("action", "/addDailyDiet"); //form 경로 변경 : 금일식단
+				$('#frm_diet').submit(); //form 제출
 			});
 	    });
 	    
 	    const food = [ ${food.kcal}, ${food.water}, ${food.protein}, ${food.fat}, ${food.carbohydrate}, ${food.sugars}, ${food.dietaryFiber}, ${food.calcium},
 	    	${food.ironContent}, ${food.phosphorus}, ${food.potassium}, ${food.sodium}, ${food.vitaminA}, ${food.retinol}, ${food.betaCarotene}, ${food.thiamine},
 	    	${food.riboflavin}, ${food.niacin}, ${food.vitaminC}, ${food.vitaminD}, ${food.cholesterol}, ${food.saturatedFat}, ${food.transFat}
-	        ];
+	        ]; //식품 영양소정보 반환값 배열 변수 저장
 	    
-	    function nutrientShow() {
+	    function nutrientShow() { //영양소 출력 함수
 	        const nutrients = [
 	            'kcal', 'water', 'protein', 'fat', 'carbohydrate', 'sugars',
 	            'dietaryFiber', 'calcium', 'ironContent', 'phosphorus', 
 	            'potassium', 'sodium', 'vitaminA', 'retinol', 'betaCarotene',
 	            'thiamine', 'riboflavin', 'niacin', 'vitaminC', 'vitaminD',
 	            'cholesterol', 'saturatedFat', 'transFat'
-	        ];
+	        ]; //영양소 이름 배열 변수 저장
 	
-	        let foodAmountPer = parseFloat($('input[name=foodIntake]').val() / 100);
+	        let foodAmountPer = parseFloat($('input[name=foodIntake]').val() / 100); //기준량(100g) 대비 섭취량 비율 산출 및 저장
 	
 	        let nutrientValue;
 	        let nutrientContent;
 	        let nutrientRecPer;
 	        
-	        <c:if test="${not empty nc}">
+	        <c:if test="${not empty nc}"> //회원 섭취량 기준정보 반환값 존재 경우
 		        <c:forEach var="item" items="${nc}" varStatus="status">
 		       	
-		        	nutrientValue = food[${status.index}];
-		        	nutrientContent = nutrientValue * foodAmountPer;
+		        	nutrientValue = food[${status.index}]; //식품 영양소별 함유량값 호출 및 저장
+		        	nutrientContent = nutrientValue * foodAmountPer; //식품 섭취량 비율 대비 영양소별 함유량값 산출 및 저장   
 		        
-		        	$('.nutrient-content').eq(${status.index}).text(nutrientValue.toFixed(2));
-		        	$('.nutrient-result').eq(${status.index}).text(nutrientContent.toFixed(2));
-		       	 	$('.nutrient-id').eq(${status.index}).attr("name", nutrients[${status.index}]);            
-		        	$('.nutrient-id').eq(${status.index}).val(nutrientContent.toFixed(2));
+		        	$('.nutrient-content').eq(${status.index}).text(nutrientValue.toFixed(2)); //식품 영양소별 함유량값 표기
+		        	$('.nutrient-result').eq(${status.index}).text(nutrientContent.toFixed(2)); //식품 섭취량 비율 대비 영양소별 함유량값 표기
+		       	 	$('.nutrient-id').eq(${status.index}).attr("name", nutrients[${status.index}]); //데이터 전송 영양소 이름 설정           
+		        	$('.nutrient-id').eq(${status.index}).val(nutrientContent.toFixed(2)); //데이터 전송 영양소별 함유량값 입력
 		        
 		        	nutrientRecPer = ${item.intakeRec} == 0 ? '-' : (nutrientContent / ${item.intakeRec} * 100).toFixed(2) + '%';
-		        	$('.nutrient-rec-per').eq(${status.index}).text(nutrientRecPer);
+		        	$('.nutrient-rec-per').eq(${status.index}).text(nutrientRecPer); // 회원 섭취량 기준정보 대비 영양소별 함유량 비율 표기
 		        
 		    	</c:forEach>
 		    </c:if>
 		    
-		    console.log('aa');
-		    
-		    <c:if test="${empty nc}">
+		    <c:if test="${empty nc}"> //회원 섭취량 기준정보 반환값 존재하지 않을 경우
 		        <c:forEach var="item" begin="0" end="22" step="1" varStatus="status">
 		       	
 		        	nutrientValue = food[${status.index}];
 		        	nutrientContent = nutrientValue * foodAmountPer;
 		        	
-		        	console.log(nutrientContent);
-		        
 		        	$('.nutrient-content').eq(${status.index}).text(nutrientValue.toFixed(2));
 		        	$('.nutrient-result').eq(${status.index}).text(nutrientContent.toFixed(2));
 		        

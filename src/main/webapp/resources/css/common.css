@@ -91,7 +91,7 @@
 }
 
 @media screen and (max-width: 768px){
-	#header .profile .box{margin-right: 0;}
+	#header .profile .box{margin-right: 0; margin-bottom: 10px;}
 	#header .profile .box_wrap{flex-direction: column;}
     #header .quick_menu .quick_inner{width: 100%; float: none;}
     #header .quick_menu .quick_inner .box{margin-left: 3%;}
@@ -128,8 +128,9 @@
 #header .top_menu .fa-bars {display: block;}
 #header .fa-bars.active{display: none;}
 #header .fa-times {margin-left: auto; color: white; font-size: 22px;}
-#header .h_moblie.active, #header .fa-times.active {cursor: pointer; z-index: 20;}
+#header .h_moblie.active, #header .fa-times.active {z-index: 90;}
 #header .h_moblie.active{display: block;}
+#header .fa-times.active{cursor: pointer;}
 #header .f_rigth{font-size: 25px;}
 
 @media screen and (max-width: 1400px){
@@ -245,7 +246,7 @@
 .search_cont .search_inner .tab{display: flex; justify-content: right;}
 .search_cont .search_inner .tab .lnb{padding: 12px 20px; background: #D1D4DE; border: 1px solid #B7BED4; cursor: pointer;}
 .search_cont .search_inner .tab .lnb.on{background: #4B4B4B; border: 1px solid #4B4B4B;}
-.search_cont .search_inner .tab .lnb span{color: #5B5B5B;}
+.search_cont .search_inner .tab .lnb span{color: #5B5B5B; text-align: center;}
 .search_cont .search_inner .tab .lnb span::after{content: ''; padding-left: 15px; margin-left: 60px; background: url(../images/sub/icon/akar-chevron-down-small.svg) no-repeat center;}
 .search_cont .search_inner .tab .lnb.on span{color: white;}
 .search_cont .search_inner .tab .lnb.on span::after{content: ''; background: url(../images/sub/icon/akar-chevron-down-small_white.svg) no-repeat center;}
@@ -305,7 +306,7 @@
 
 /* check_list_sm */
 .icheck_sm_wrap {display: flex;flex-wrap: wrap;}
-.icheck_sm {display: flex;align-items: center; margin-top: 18px;}
+.icheck_sm {display: flex;align-items: center; margin: 8px 0;}
 .icheck_sm.center {justify-content: center;}
 .icheck_sm.mar {margin-right: 20px;}
 .icheck_sm input[type="checkbox"] {outline: none;border: none;background-color: #fff;-webkit-border-radius: 0;-webkit-appearance: none;display: none;}

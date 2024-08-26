@@ -81,14 +81,6 @@ public class DietServiceImpl implements DietService{
 	}
 
 	@Override
-	public List<Double> getRecommendedIntakeByMemberInfo(User user) {
-		// TODO Auto-generated method stub
-		List<Double> result = dietDAO.getRecommendedIntakeByMemberInfo(user);
-		
-		return result;
-	}
-
-	@Override
 	public int addFoodToExpectedDiet(Diet diet) {
 		// TODO Auto-generated method stub
 		int result = dietDAO.addFoodToExpectedDiet(diet);

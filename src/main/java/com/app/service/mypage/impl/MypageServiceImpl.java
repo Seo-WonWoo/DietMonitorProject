@@ -10,53 +10,48 @@ import com.app.dto.diet.Diet;
 import com.app.dto.mypage.TotalDietSearchCondition;
 import com.app.service.mypage.MypageService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Service
 public class MypageServiceImpl implements MypageService {
-	
-	@Autowired
-	MypageDAO mypageDAO;
+
+    @Autowired
+    MypageDAO mypageDAO;
+
+	@Override
+	public Diet findAvgWeeklyNutrientByMemberInfo(TotalDietSearchCondition totalDietSearchCondition) {
+		// TODO Auto-generated method stub
+		Diet AvgWeeklyNutrientByMemberInfo = mypageDAO.findAvgWeeklyNutrientByMemberInfo(totalDietSearchCondition);
+		return AvgWeeklyNutrientByMemberInfo;
+	}
 
 	@Override
 	public List<Diet> findTotalDietBySearchCondition(TotalDietSearchCondition totalDietSearchCondition) {
-		
-		List<Diet> totalDietList = mypageDAO.findTotalDietBySearchCondition(totalDietSearchCondition);
-		
-		return totalDietList;
+		// TODO Auto-generated method stub
+		List<Diet> TotalDietBySearchCondition = mypageDAO.findTotalDietBySearchCondition(totalDietSearchCondition);
+		return TotalDietBySearchCondition;
 	}
 
 	@Override
-	public Diet findTotalDietByAvg(TotalDietSearchCondition totalDietSearchCondition) {
+	public List<Diet> getDailyTotalNutrientBySearchCondition(TotalDietSearchCondition totalDietSearchCondition) {
 		// TODO Auto-generated method stub
-		Diet totalDiet = mypageDAO.findTotalDietByAvg(totalDietSearchCondition);
-		return totalDiet;
+		List<Diet> DailyTotalNutrientBySearchCondition = mypageDAO.getDailyTotalNutrientBySearchCondition(totalDietSearchCondition);
+		return DailyTotalNutrientBySearchCondition;
 	}
 
 	@Override
-	public List<Diet> findTotalDietBySaveHistory(TotalDietSearchCondition totalDietSearchCondition) {
+	public List<Diet> getDailyTotalNutrientForPast30DaysByMemberInfo(TotalDietSearchCondition totalDietSearchCondition) {
 		// TODO Auto-generated method stub
-		List<Diet> totalDietList = mypageDAO.findTotalDietBySaveHistory(totalDietSearchCondition);
-		return totalDietList;
+		List<Diet> DailyTotalNutrientForPast30DaysByMemberInfo = mypageDAO.getDailyTotalNutrientForPast30DaysByMemberInfo(totalDietSearchCondition);
+		return DailyTotalNutrientForPast30DaysByMemberInfo;
 	}
 
 	@Override
-	public List<Diet> findTotalDietBySaveHistorySum(TotalDietSearchCondition totalDietSearchCondition) {
+	public List<Diet> getNutrientStandardByMemberInfo(TotalDietSearchCondition totalDietSearchCondition) {
 		// TODO Auto-generated method stub
-		List<Diet> totalDietListSum = mypageDAO.findTotalDietBySaveHistorySum(totalDietSearchCondition);
-		return totalDietListSum;
-	}
-
-	@Override
-	public List<Diet> findTotalDietByMonthSum(TotalDietSearchCondition totalDietSearchCondition) {
-		// TODO Auto-generated method stub
-		List<Diet> totalDietListMonthSum = mypageDAO.findTotalDietByMonthSum(totalDietSearchCondition);
-		return totalDietListMonthSum;
-	}
-
-	@Override
-	public List<Diet> findTotalDietByStandard(TotalDietSearchCondition totalDietSearchCondition) {
-		// TODO Auto-generated method stub
-		List<Diet> findTotalDietByStandard = mypageDAO.findTotalDietByStandard(totalDietSearchCondition);
-		return findTotalDietByStandard;
+		List<Diet> NutrientStandardByMemberInfo = mypageDAO.getNutrientStandardByMemberInfo(totalDietSearchCondition);
+		return NutrientStandardByMemberInfo;
 	}
 	
 	

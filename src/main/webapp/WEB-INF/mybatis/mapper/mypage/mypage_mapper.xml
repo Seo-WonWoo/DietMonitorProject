@@ -6,21 +6,7 @@
 
 <mapper namespace="mypage_mapper">
 	
-	<select id="findTotalDietBySearchCondition" parameterType="TotalDietSearchCondition" resultType="Diet">
-		SELECT * FROM diet
-		<where>
-			<if test="accountNo != null and accountNo != '' ">
-				account_no = #{accountNo}				
-			</if>
-			<if test="memberNo != null and memberNo != '' ">
-				AND member_no = #{memberNo}				
-			</if>		
-				AND save_date BETWEEN SYSDATE-7 and SYSDATE
-				AND state !=3
-		</where>				
-	</select>
-	
-	<select id="findTotalDietByAvg" parameterType="TotalDietSearchCondition" resultType="Diet">
+	<select id="findAvgWeeklyNutrientByMemberInfo" parameterType="TotalDietSearchCondition" resultType="Diet">
 		select 
 		    TRUNC(AVG(kcal),1) kcal,
 		    TRUNC(AVG(water),1) water,
@@ -114,7 +100,7 @@
 		</where>				
 	</select>
 	
-	<select id="findTotalDietByMonthSum" parameterType="TotalDietSearchCondition" resultType="Diet">
+	<select id="getDailyTotalNutrientForPast30DaysByMemberInfo" parameterType="TotalDietSearchCondition" resultType="Diet">
 		SELECT
 		    COUNT(*) foodName,
 		    save_date,
@@ -184,11 +170,11 @@
 					
 	</select>
 	
-	<select id="findTotalDietBySaveHistory" parameterType="TotalDietSearchCondition" resultType="Diet">
+	<select id="findTotalDietBySearchCondition" parameterType="TotalDietSearchCondition" resultType="Diet">
 		SELECT
 		    td.log_no log_no,
 		    td.account_no account_no,
-		    td.member_no member_no,
+		    td.member_no member_no, 
 		    TO_CHAR(td.save_date, 'YYYY-MM-DD') save_date,
 		    td.food_code food_code,
 		    ft.food_name food_name, 
@@ -348,7 +334,7 @@
 		ORDER BY td.log_no		
 	</select>
 	
-	<select id="findTotalDietBySaveHistorySum" parameterType="TotalDietSearchCondition" resultType="Diet">
+	<select id="getDailyTotalNutrientBySearchCondition" parameterType="TotalDietSearchCondition" resultType="Diet">
 		SELECT
 		    COUNT(*) foodName,
 		    save_date,
@@ -420,20 +406,65 @@
 		ORDER BY save_date DESC				
 	</select>
 	
-	<select id="findTotalDietByStandard" parameterType="TotalDietSearchCondition" resultType="Diet">
+	<select id="getNutrientStandardByMemberInfo" parameterType="TotalDietSearchCondition" resultType="Diet">
 		SELECT 
 		    n.nutrient_name food_name,
     		s.intake_rec food_intake
 		FROM nutrient n,                 
-		        (SELECT *
-				FROM nutrition_standard
-				WHERE (SELECT CEIL(MONTHS_BETWEEN(SYSDATE, birth)) 
-		        FROM member
-		        WHERE account_no = #{accountNo} AND member_no = #{memberNo}) 
-				BETWEEN age_min AND age_max
-				AND gender_id = (SELECT gender_id FROM member WHERE account_no = #{accountNo} AND member_no = #{memberNo})
-				ORDER BY nutrient_id) s
-		WHERE n.nutrient_id = s.nutrient_id			
+		        (
+		        SELECT 
+				    a.nutrient_id nutrient_id ,
+				    a.gender_id gender_id,
+				    a.age_min age_min,
+				    a.age_max age_max,
+				    a.intake_rec + b.intake_rec intake_rec,
+				    a.intake_max intake_max
+				FROM
+				(
+				    SELECT *
+				    FROM nutrition_standard
+				    WHERE
+				        (
+				            SELECT CEIL(MONTHS_BETWEEN(SYSDATE, birth)) 
+				            FROM member
+				            WHERE account_no = #{accountNo} AND member_no = #{memberNo}
+				        ) BETWEEN age_min AND age_max
+				        AND gender_id = DECODE (
+				            (
+				                CASE 
+				                    WHEN
+				                        CEIL (MONTHS_BETWEEN( SYSDATE, (SELECT birth FROM member WHERE account_no = #{accountNo} AND member_no = #{memberNo}) ) ) &lt; 61
+				                        THEN 
+				                            (
+				                                SELECT DISTINCT(gender_id) 
+				                                FROM nutrition_standard 
+				                                WHERE CEIL(MONTHS_BETWEEN( SYSDATE, (SELECT birth FROM member WHERE account_no = #{accountNo} AND member_no = #{memberNo}) ) ) BETWEEN age_min AND age_max
+				                            )
+				                    ELSE (SELECT gender_id FROM member WHERE account_no = #{accountNo} AND member_no = #{memberNo})
+				                END
+				            ), 1, 1, 2, 2, 3, 3, 4
+				       )
+				) a, 
+				
+				(
+				    SELECT 
+				        nutrient_id,
+				        DECODE((SELECT gender_id FROM member WHERE account_no = #{accountNo} AND member_no = #{memberNo}), 5, intake_rec, 6, intake_rec, 0) intake_rec
+				    FROM nutrition_standard
+				    WHERE
+				        (
+				            SELECT CEIL( MONTHS_BETWEEN( SYSDATE, NVL2( (SELECT pregnant_date FROM member WHERE account_no = #{accountNo} AND member_no = #{memberNo}),
+				                                                        (SELECT pregnant_date FROM member WHERE account_no = #{accountNo} AND member_no = #{memberNo}), add_months(sysdate,-120) ) ) )
+				            FROM member
+				            WHERE
+				            account_no = #{accountNo} AND member_no = #{memberNo}
+				        ) BETWEEN age_min AND age_max
+				        AND gender_id = dECODE((SELECT gender_id FROM member WHERE account_no = #{accountNo} AND member_no = #{memberNo}), 5, 5, 6, 6, 4)
+				) b
+				WHERE a.nutrient_id = b.nutrient_id
+				) s
+		WHERE n.nutrient_id = s.nutrient_id 
+		ORDER BY n.nutrient_id		
 	</select>	
 	
 </mapper>

@@ -76,7 +76,7 @@ select {border: none;}
 .profile_btn{float: right;}
 .profile_btn a{color: #8f8f8f;}
 
-.common_btn{background: #1565A2; padding: 0 35px; border-radius: 5px; color: white; height: 45px; float: right; position: relative; z-index: 100}
+.common_btn{background: #1565A2; padding: 0 35px; border-radius: 5px; color: white; height: 45px; float: right; position: relative; z-index: 10}
 .common_opposite_btn{background: white; border: 1px solid #1565A2; padding: 0 35px; border-radius: 5px; color: #1565A2; height: 45px;}
 
 .board_btn{background: #E9F4FF; padding: 11px 20px; border: 1px solid #1565A2; border-radius: 7px; color: #1565A2;}

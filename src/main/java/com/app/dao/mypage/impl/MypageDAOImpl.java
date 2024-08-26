@@ -16,54 +16,44 @@ public class MypageDAOImpl implements MypageDAO {
 	@Autowired
 	SqlSessionTemplate sqlSessionTemplate;
 
+	@Override
+	public Diet findAvgWeeklyNutrientByMemberInfo(TotalDietSearchCondition totalDietSearchCondition) {
+		// TODO Auto-generated method stub
+		Diet AvgWeeklyNutrientByMemberInfo = sqlSessionTemplate.selectOne("mypage_mapper.findAvgWeeklyNutrientByMemberInfo", totalDietSearchCondition);
+		
+		return AvgWeeklyNutrientByMemberInfo;
+	}
+
 
 	@Override
 	public List<Diet> findTotalDietBySearchCondition(TotalDietSearchCondition totalDietSearchCondition) {
-		
-		List<Diet> totalDietList = sqlSessionTemplate.selectList("mypage_mapper.findTotalDietBySearchCondition", totalDietSearchCondition);
-		
-		return totalDietList;
+		// TODO Auto-generated method stub
+		List<Diet> TotalDietBySearchCondition = sqlSessionTemplate.selectList("mypage_mapper.findTotalDietBySearchCondition", totalDietSearchCondition);
+		return TotalDietBySearchCondition;
 	}
 
 
 	@Override
-	public Diet findTotalDietByAvg(TotalDietSearchCondition totalDietSearchCondition) {
+	public List<Diet> getDailyTotalNutrientBySearchCondition(TotalDietSearchCondition totalDietSearchCondition) {
 		// TODO Auto-generated method stub
-		Diet totalDiet = sqlSessionTemplate.selectOne("mypage_mapper.findTotalDietByAvg", totalDietSearchCondition);
-		
-		return totalDiet;
+		List<Diet> DailyTotalNutrientBySearchCondition = sqlSessionTemplate.selectList("mypage_mapper.getDailyTotalNutrientBySearchCondition", totalDietSearchCondition);
+		return DailyTotalNutrientBySearchCondition;
 	}
 
 
 	@Override
-	public List<Diet> findTotalDietBySaveHistory(TotalDietSearchCondition totalDietSearchCondition) {
+	public List<Diet> getDailyTotalNutrientForPast30DaysByMemberInfo(TotalDietSearchCondition totalDietSearchCondition) {
 		// TODO Auto-generated method stub
-		List<Diet> totalDietList = sqlSessionTemplate.selectList("mypage_mapper.findTotalDietBySaveHistory", totalDietSearchCondition);
-		return totalDietList;
+		List<Diet> DailyTotalNutrientForPast30DaysByMemberInfo = sqlSessionTemplate.selectList("mypage_mapper.getDailyTotalNutrientForPast30DaysByMemberInfo", totalDietSearchCondition);
+		return DailyTotalNutrientForPast30DaysByMemberInfo;
 	}
 
 
 	@Override
-	public List<Diet> findTotalDietBySaveHistorySum(TotalDietSearchCondition totalDietSearchCondition) {
+	public List<Diet> getNutrientStandardByMemberInfo(TotalDietSearchCondition totalDietSearchCondition) {
 		// TODO Auto-generated method stub
-		List<Diet> totalDietListSum = sqlSessionTemplate.selectList("mypage_mapper.findTotalDietBySaveHistorySum", totalDietSearchCondition);
-		return totalDietListSum;
-	}
-
-
-	@Override
-	public List<Diet> findTotalDietByMonthSum(TotalDietSearchCondition totalDietSearchCondition) {
-		// TODO Auto-generated method stub
-		List<Diet> totalDietListMonthSum = sqlSessionTemplate.selectList("mypage_mapper.findTotalDietByMonthSum", totalDietSearchCondition);
-		return totalDietListMonthSum;
-	}
-
-
-	@Override
-	public List<Diet> findTotalDietByStandard(TotalDietSearchCondition totalDietSearchCondition) {
-		// TODO Auto-generated method stub
-		List<Diet> findTotalDietByStandard = sqlSessionTemplate.selectList("mypage_mapper.findTotalDietByStandard", totalDietSearchCondition);
-		return findTotalDietByStandard;
+		List<Diet> NutrientStandardByMemberInfo = sqlSessionTemplate.selectList("mypage_mapper.getNutrientStandardByMemberInfo", totalDietSearchCondition);
+		return NutrientStandardByMemberInfo;
 	}
 	
 	

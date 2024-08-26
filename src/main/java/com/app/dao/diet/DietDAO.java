@@ -21,8 +21,6 @@ public interface DietDAO {
 
 	int saveDailyDietToTotalDiet();
 
-	List<Double> getRecommendedIntakeByMemberInfo(User user);
-
 	Diet getTotalNutrientFromDailyDietByMemberInfo(User user);
 
 	int addFoodToExpectedDiet(Diet diet);

@@ -284,17 +284,6 @@
 		ORDER BY log_no
 	</select>
 	
-	<select id="getRecommendedIntakeByMemberInfo" parameterType="User" resultType="double">
-		SELECT intake_rec
-		FROM nutrition_standard
-		WHERE (SELECT CEIL(MONTHS_BETWEEN(SYSDATE, birth)) 
-				        FROM member
-				        WHERE account_no = #{accountNo} AND member_no = #{memberNo}) 
-		BETWEEN age_min AND age_max
-		AND gender_id = (SELECT gender_id FROM member WHERE account_no = #{accountNo} AND member_no = #{memberNo})
-		ORDER BY nutrient_id
-	</select>
-	
 	<delete id="deleteSelectedDailyDiet" parameterType="int">
 		DELETE FROM diet
 		WHERE log_no = #{logNo} 

@@ -198,46 +198,46 @@
     	
     	$(document).ready(function(){ 		
     		
-    		$('.big_category').eq(0).addClass('on');
+    		$('.big_category').eq(0).addClass('on'); //메인카테고리 첫번째 항목 디스플레이 ON
     		
-    		foodListShow();
+    		foodListShow(); //식품리스트 호출 함수 실행
     		
-    		$('.page_num').click(function(){
+    		$('.page_num').click(function(){ //한페이지 표현 갯수 항목 클릭시
     			foodListShow();
     		});
     		
-    		$('input[name=selection]').click(function(){
+    		$('input[name=selection]').click(function(){ //결과 내 식품분류별 보기 버튼 클릭시
     			foodListShow();
     		});
     		
-    		$('#searchKeyword').keypress(function(e){
+    		$('#searchKeyword').keypress(function(e){ //키워드 입력창 엔터 클릭시
     			if(e.keyCode && e.keyCode == 13){
     				foodListShow();
     			}
     		});
     		
-    		$('.search_icon').click(function(){
+    		$('.search_icon').click(function(){ //검색 아이콘 클릭시
     			foodListShow();
     		});
     		
-    		$('.common_btn').click(function(){
+    		$('.common_btn').click(function(){ //검색 버튼 클릭시
     			foodListShow();
     		});    		
 
     	});
     
     	
-    	function foodListShow(requestPage){
+    	function foodListShow(requestPage){ //식품리스트 호출 함수(매개변수 현재 페이지)
     		
-    		let searchKeyword = $('#searchKeyword').val();
+    		let searchKeyword = $('#searchKeyword').val(); //키워드 입력값 호출 및 변수 저장
     		
     		let dataSortId = "";
-			$('input[name=selection]:checked').each(function(){
+			$('input[name=selection]:checked').each(function(){ //식품구분 입력값 호출 및 변수 저장
 				dataSortId = $(this).val();
     		});
 			
     		let mainCategoryNameArr = [];
-    		$('input[name=mainCategory]:checked').each(function(){
+    		$('input[name=mainCategory]:checked').each(function(){ //메인 카테고리 입력값 호출 및 배열 변수 저장
     			let mainCategoryName = $(this).val();
     			mainCategoryNameArr.push(mainCategoryName);
     		});
@@ -246,11 +246,11 @@
     		
     		let repFoodName = [];
     		
-    		let currentPage = requestPage == "" || requestPage == null ? 1: requestPage;
+    		let currentPage = requestPage == "" || requestPage == null ? 1: requestPage; //현재 페이지 변수 저장(매개변수 입력값 없을 경우 기본값 1)
     		
-    		let itemsPerPage = parseInt($('.page_num').val());
+    		let itemsPerPage = parseInt($('.page_num').val()); //한페이지 표현 갯수값 호출 및 변수 저장
     		    		
-    		let requestJsonData = {
+    		let requestJsonData = {	//요청 데이터 객체 타입 저장
     			'searchKeyword' : searchKeyword,	
     			'dataSortId' : dataSortId,
     			'mainCategoryName' : mainCategoryNameArr,
@@ -264,31 +264,31 @@
     		
     		console.log(requestJsonData);
     		
-    		let requestJsonDataString = JSON.stringify(requestJsonData);
+    		let requestJsonDataString = JSON.stringify(requestJsonData); //요청 데이터 객체 JSON -> String 타입변경
 			
     		$.ajax({
     			type: "POST",
-    			url: "http://localhost:8080/foodSearchList",
+    			url: "http://localhost:8080/foodSearchList", //ajax 통신 url
     			headers:{
 					"Content-type":"application/json;charset:UTF-8"
 				},
-    			dataType: 'json',
-    			data:requestJsonDataString,
-    			success: function(result){ 
+    			dataType: 'json', //데이터 반환 타입
+    			data:requestJsonDataString, //전송 데이터
+    			success: function(result){ //ajax 통신 성공 경우
     				
     				let searchResult;
-    				if(result.page.totalItems != 0){
+    				if(result.page.totalItems != 0){ //검색결과 식품 리스트 값 있을 경우
     					searchResult = "검색결과 총 " + result.page.totalItems + "건";
-    				} else {
+    				} else { //검색결과 식품 리스트 값 없을 경우
     					searchResult = "해당하는 식품을 찾을 수 없어요";
     				}
     				
-    				$('#searchResult').text(searchResult);    				
+    				$('#searchResult').text(searchResult); //검색결과 항목 화면 텍스트 표기   				
     				
     				let data = "";
     				
     				for(item in result.foodList){
-    					
+    					//식품 리스트 결과 table 행 추가용 String 저장 
     					data += '<tr onclick="location.href=\'foodDetail/' + result.foodList[item].foodCode + '\'">';
     					data += '<td>' + result.foodList[item].num + '</td>';
     					data += '<td>' + result.foodList[item].foodName + '</td>';
@@ -298,16 +298,16 @@
 	                    data += '</tr>';
     				}
     				
-    				$('#foodList').html(data);
+    				$('#foodList').html(data); //식품 리스트 결과 항목에 출력용 데이터 html 입력
     				
-    				    				
+					//페이지 네이션 html 입력    				
     				$('#at_front').html(
         					'<a href="javascript:foodListShow(' + result.page.frontPage + ')"> <img src="../images/sub/icon/at_front.svg" alt=""> </a>'
-       				);
+       				); //건너 앞페이지(<<)
         				
        				$('#left').html(
            					'<a href="javascript:foodListShow(' + (result.page.currentPage-1) + ')"> <img src="../images/sub/icon/Icon akar-chevron-left-small.svg" alt=""> </a>'
-           			);    				
+           			); //앞페이지(<)    				
     				
     				data = "";
     				for(let i=result.page.pageStart; i<=result.page.pageEnd; i++) {
@@ -318,17 +318,17 @@
     						data += '<div class="number" data-page="' + i + '"><a href="javascript:foodListShow(' + i + ')">' + i + '</a></div>';
     					}
     					  					
-    				}
+    				} //페이지 번호
     				$('.page-numbers').html(data);  
     				
     				
     				$('#right').html(
         					'<a href="javascript:foodListShow(' + (result.page.currentPage+1) + ')"> <img src="../images/sub/icon/Icon akar-chevron-right-small.svg" alt=""> </a>'
-        			);    				
+        			); //건너 뒤페이지(>>)   				
     				
     				$('#at_back').html(
         					'<a href="javascript:foodListShow(' + result.page.backPage + ')"> <img src="../images/sub/icon/at_back.svg" alt=""> </a>'
-        			);
+        			); //뒤페이지(>)
         		
     				
     			},

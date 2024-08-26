@@ -1,5 +1,5 @@
 $(document).ready(function() {
-	
+	//foodSearch 탭메뉴
     $(".search_cont ul.tab li.lnb").on('click', function() {
         let index = $(".search_cont ul.tab li.lnb").index(this);
       
@@ -13,7 +13,7 @@ $(document).ready(function() {
     $('.search_cont .tab_content').hide();
     $('.search_cont .tab_content:first').show();
 
-    
+    //foodSearch 검색부분 체크박스 - 체크 시 tag_gnb에 표시
     $(".icheck_sm_wrap input[type='checkbox']").change(function() {
         let checkboxId = $(this).attr('id');
         let checkboxLabel = $("label[for='" + checkboxId + "']").text();
@@ -33,6 +33,7 @@ $(document).ready(function() {
         }
     });
 
+	//foodSearch 검색부분 체크박스 - close-btn클릭 시 해당 태그 지우기
     $(document).on('click', '.tag .close-btn', function() {
         let $tag = $(this).closest('.tag');
         let checkboxId = $tag.data('id');
@@ -40,6 +41,7 @@ $(document).ready(function() {
         $tag.remove();
     });
 
+	//foodSearch 검색부분 체크박스 - 선택초기화 버튼 클릭시 리셋
     $(".reset").click(function() {
         $(".icheck_sm_wrap input[type='checkbox']").prop('checked', false);
         $(".tag_gnb").empty();
@@ -48,18 +50,27 @@ $(document).ready(function() {
 
 
 
-    
+    // 나의 영양성분 비교분석 - 슬라이드 상세보기 클릭시 보이기 / 닫기 클릭시 숨김
     $(".popup .box .close").click(function(){
         $(".popup").hide();
     });
+	
+	
 
-    $(".decibal_title .slide_box .box .more").click(function(){
+    /*$(".decibal_title .slide_box .box .more").click(function(){
         $(".popup").show();
-    });
+    });*/
+	
+	$(".decibal_title .slide_box .box .more").each(function(i) {
+	    $(this).click(function() {
+	        $(".popup").eq(i).show();
+	    });
+	});
 
     const slideDistance = 600; // 슬라이드 이동 거리
     const animationDuration = 300; // 애니메이션 지속 시간 (밀리초)
 
+	//표 상세 영양정보 슬라이드 버튼 클릭시 각 해당 기능 작동
     function updateScroll(button, direction) {
         var target = $(button).data('target');
         var $nutrient = $(target);
@@ -98,6 +109,7 @@ $(document).ready(function() {
         updateScroll(this, 'right');
     });
 
+	// 표 tr 클릭시 해당 tr요소의 정보 보임 / 숨김
     $('tbody tr').click(function() {
         var $nextTr = $(this).next('tr');
         if ($nextTr.length > 0 && $nextTr.hasClass('tr_event')) {
@@ -106,11 +118,8 @@ $(document).ready(function() {
             $nextTr.find('.more_information').toggle();
         }
     });
-
-
-
     
-
+	// 표 슬라이드 해당 버튼 클릭시 이동
     $('.table_menu').each(function() {
         const $section = $(this);
         const $tableInner = $section.find('.table_inner');
@@ -118,19 +127,16 @@ $(document).ready(function() {
         const $rightBtn = $section.find('.slider_next img');
         const $linearBox = $section.find('.linear_box');
 
-        // 현재 스크롤 위치와 linearBox의 오른쪽 위치를 추적
         let scrollLeft = 0;
         let linearBoxRight = 0;
 
         function updateLinearBoxPosition() {
-            // linearBox의 오른쪽 위치를 즉시 업데이트 (애니메이션 없음)
             $linearBox.css('right', `${linearBoxRight}px`);
         }
 
         $leftBtn.on('click', function() {
-            // linearBox 위치 업데이트
             scrollLeft = Math.max(0, scrollLeft - slideDistance);
-            linearBoxRight = Math.min(0, linearBoxRight + slideDistance); // -600px씩 이동
+            linearBoxRight = Math.min(0, linearBoxRight + slideDistance);
 
             updateLinearBoxPosition();
 
@@ -140,12 +146,10 @@ $(document).ready(function() {
         });
 
         $rightBtn.on('click', function() {
-            // linearBox 위치 업데이트
             const maxScroll = $tableInner[0].scrollWidth - $tableInner.width();
             scrollLeft = Math.min(maxScroll, scrollLeft + slideDistance);
-            linearBoxRight = Math.max(-maxScroll, linearBoxRight - slideDistance); // +600px씩 이동
+            linearBoxRight = Math.max(-maxScroll, linearBoxRight - slideDistance);
 
-            // linearBox의 위치를 즉시 업데이트
             updateLinearBoxPosition();
 
             // 테이블을 오른쪽으로 슬라이드
@@ -154,7 +158,6 @@ $(document).ready(function() {
             }, animationDuration);
         });
 
-        // 초기 상태 설정
         updateLinearBoxPosition();
     });
 

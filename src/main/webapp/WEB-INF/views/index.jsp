@@ -122,7 +122,6 @@
             <p class="title_exp">서비스 메뉴들의 상세설명을 확인하세요</p>
             <div class="swiper-container service_list">
                 <div class="swiper-wrapper">
-                    <!-- 슬라이드 1 -->
                     <div class="swiper-slide wrap">
                         <div class="pic">
                             <img src="./images/main/service_img01.jpg" alt="서비스 상세설명 이미지">
@@ -152,7 +151,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- 추가된 슬라이드들 -->
                     <div class="swiper-slide wrap">
                         <div class="pic">
                             <img src="./images/main/service_img01.jpg" alt="서비스 상세설명 이미지">
@@ -182,7 +180,6 @@
                             </div>
                         </div>
                     </div>
-                    <!-- 추가된 슬라이드 3 -->
                     <div class="swiper-slide wrap">
                         <div class="pic">
                             <img src="./images/main/service_img01.jpg" alt="서비스 상세설명 이미지">
@@ -220,7 +217,7 @@
 
     <script>
         $(function () {
-            /* 서비스 상세 설명 슬라이드 */
+            /* 메인 서비스 상세 설명 슬라이드 */
             if ($('.service_detail .swiper-container').length) {
                 var serviceSwiper = new Swiper('.service_detail .swiper-container', {
                     loop: true,
@@ -251,20 +248,18 @@
                         },
                     },
                 });
-
-                // Swiper 초기화
+                
                 serviceSwiper.init();
 
-                // 재생 및 정지 버튼
                 $('.service_detail .stop').click(function () {
                     var isRunning = serviceSwiper.autoplay.running;
 
                     if (isRunning) {
                         serviceSwiper.autoplay.stop();
-                        $(this).find('img').attr('src', './images/main/icon/akar-ion-play.svg'); // 아이콘을 '재생'으로 변경
+                        $(this).find('img').attr('src', './images/main/icon/akar-ion-play.svg'); 
                     } else {
                         serviceSwiper.autoplay.start();
-                        $(this).find('img').attr('src', './images/main/icon/akar-two-line-vertical.svg'); // 아이콘을 '멈춤'으로 변경
+                        $(this).find('img').attr('src', './images/main/icon/akar-two-line-vertical.svg');
                     }
                 });
             }

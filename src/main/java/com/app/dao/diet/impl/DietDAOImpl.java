@@ -81,16 +81,7 @@ public class DietDAOImpl implements DietDAO {
 		
 		return result;
 	}
-
-	@Override
-	public List<Double> getRecommendedIntakeByMemberInfo(User user) {
-		// TODO Auto-generated method stub
-		List<Double> result = sqlSessionTemplate.selectList("diet_mapper."
-				+ "getRecommendedIntakeByMemberInfo", user);
-		
-		return result;
-	}
-
+	
 	@Override
 	public int addFoodToExpectedDiet(Diet diet) {
 		// TODO Auto-generated method stub

@@ -11,7 +11,7 @@ public class DietTransferScheduler {
 	DietService dietService;
 	
 	//@Scheduled(cron  = "* * 5 * * *") //실제 서비스 시 사용될 cron (매일 새벽 5시)
-	@Scheduled(cron  = "0 0 */3 * * *") //현재 3시간마다 작동
+	@Scheduled(cron  = "0 0 5 * * *") //(매일 새벽 5시)
 	public void dietTransferScheduler() {
 		
 		int result = dietService.saveDailyDietToTotalDiet();
